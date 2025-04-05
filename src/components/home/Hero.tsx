@@ -1,0 +1,62 @@
+
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+
+const Hero = () => {
+  return (
+    <div className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-scale-light to-white">
+      <div className="scale-container">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold text-scale-navy leading-tight">
+              Precision <span className="text-scale-teal">Weighing</span> Solutions for Every Need
+            </h1>
+            <p className="mt-6 text-xl text-scale-gray">
+              From laboratory precision to industrial strength, find the perfect scale for your business. Trusted by professionals across industries.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <Button asChild className="text-lg px-8 py-6 bg-scale-navy hover:bg-scale-navy/90">
+                <Link to="/products">
+                  Shop Scales
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="text-lg px-8 py-6 border-scale-navy text-scale-navy hover:bg-scale-navy/10">
+                <Link to="/services">
+                  Our Services
+                </Link>
+              </Button>
+            </div>
+            <div className="mt-10 flex items-center space-x-6">
+              <div className="flex -space-x-4">
+                <div className="w-10 h-10 rounded-full bg-scale-navy flex items-center justify-center text-white text-xs">TK</div>
+                <div className="w-10 h-10 rounded-full bg-scale-teal flex items-center justify-center text-white text-xs">MP</div>
+                <div className="w-10 h-10 rounded-full bg-scale-orange flex items-center justify-center text-white text-xs">JD</div>
+              </div>
+              <p className="text-scale-gray">Trusted by <span className="font-bold">1000+</span> businesses</p>
+            </div>
+          </div>
+          <div className="relative animate-scale-in lg:pl-10">
+            <div className="bg-white rounded-lg shadow-xl overflow-hidden">
+              <div className="relative pb-[56.25%]">
+                <img 
+                  src="/placeholder.svg" 
+                  alt="Digital scale for precision weighing" 
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute top-0 left-0 bg-scale-teal text-white px-4 py-2 rounded-br-lg font-semibold">
+                Featured
+              </div>
+            </div>
+            <div className="absolute -bottom-6 -right-6 bg-scale-orange text-white p-4 rounded-lg shadow-lg">
+              <p className="font-bold">Spring Sale</p>
+              <p className="text-2xl font-bold">Up to 25% OFF</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Hero;
