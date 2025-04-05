@@ -14,16 +14,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 210 100% 22%; /* Navy blue */
-    --primary-foreground: 210 40% 98%;
+    --primary: 0 100% 25%; /* Red theme */
+    --primary-foreground: 0 40% 98%;
 
-    --secondary: 172 89% 32%; /* Teal */
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 0 70% 45%; /* Lighter red */
+    --secondary-foreground: 0 40% 98%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 25 95% 53%; /* Orange */
+    --accent: 0 60% 55%; /* Accent red */
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -31,7 +31,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 0 70% 35%;
 
     --radius: 0.5rem;
   }
@@ -103,19 +103,19 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-scale-navy hover:bg-scale-navy/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
+    @apply bg-unirise-red hover:bg-unirise-red/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
   }
   
   .btn-secondary {
-    @apply bg-scale-teal hover:bg-scale-teal/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
+    @apply bg-unirise-light hover:bg-unirise-light/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
   }
   
   .btn-accent {
-    @apply bg-scale-orange hover:bg-scale-orange/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
+    @apply bg-unirise-accent hover:bg-unirise-accent/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
   }
   
   .btn-outline {
-    @apply border border-scale-navy text-scale-navy hover:bg-scale-navy/10 font-semibold py-2 px-4 rounded transition duration-200;
+    @apply border border-unirise-red text-unirise-red hover:bg-unirise-red/10 font-semibold py-2 px-4 rounded transition duration-200;
   }
   
   .scale-container {
@@ -123,10 +123,41 @@
   }
   
   .section-heading {
-    @apply text-3xl md:text-4xl font-bold text-scale-navy mb-6;
+    @apply text-3xl md:text-4xl font-bold text-unirise-red mb-6;
   }
   
   .section-subheading {
-    @apply text-xl font-medium text-scale-gray mb-8 max-w-3xl;
+    @apply text-xl font-medium text-gray-700 mb-8 max-w-3xl;
+  }
+}
+
+/* Custom Unirise colors */
+@layer utilities {
+  .text-unirise-red {
+    @apply text-[#E01021];
+  }
+  
+  .bg-unirise-red {
+    @apply bg-[#E01021];
+  }
+  
+  .text-unirise-light {
+    @apply text-[#F4353F];
+  }
+  
+  .bg-unirise-light {
+    @apply bg-[#F4353F];
+  }
+  
+  .text-unirise-accent {
+    @apply text-[#FF5B64];
+  }
+  
+  .bg-unirise-accent {
+    @apply bg-[#FF5B64];
+  }
+  
+  .border-unirise-red {
+    @apply border-[#E01021];
   }
 }

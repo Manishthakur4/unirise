@@ -10,45 +10,26 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails = ({ product }: ProductDetailsProps) => {
-  const [quantity, setQuantity] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(product.image);
   const [activeTab, setActiveTab] = useState('description');
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState(product.image);
 
-  const handleIncreaseQuantity = () => {
-    if (quantity < product.stock) {
-      setQuantity(quantity + 1);
-    } else {
-      toast({
-        title: "Maximum quantity reached",
-        description: `Only ${product.stock} units available in stock.`,
-        variant: "destructive",
-      });
-    }
-  };
-
-  const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const handleAddToCart = () => {
+  const handleContactClick = () => {
     toast({
-      title: "Added to cart",
-      description: `${quantity} x ${product.name} added to your cart.`,
+      title: "Contact form opened",
+      description: `You're interested in ${product.name}. Please fill out the contact form.`,
     });
+    // Navigate to contact page with product info in URL params
+    navigate(`/contact?product=${product.id}&name=${encodeURIComponent(product.name)}`);
   };
 
-  const handleBuyNow = () => {
+  const handleRequestQuote = () => {
     toast({
-      title: "Proceeding to checkout",
-      description: `${quantity} x ${product.name} ready for purchase.`,
+      title: "Quote request",
+      description: `Thank you for your interest in ${product.name}. Our team will contact you shortly.`,
     });
-    // In a real application, this would redirect to checkout
-    setTimeout(() => {
-      navigate('/checkout');
-    }, 1500);
+    // Navigate to contact page with quote request flag
+    navigate(`/contact?product=${product.id}&name=${encodeURIComponent(product.name)}&quote=true`);
   };
 
   // Mock images (in a real app, these would be actual product images)
@@ -103,7 +84,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
       <nav className="px-4 py-3 bg-gray-50">
         <ol className="flex text-sm">
           <li className="flex items-center">
-            <Link to="/" className="text-scale-gray hover:text-scale-navy">
+            <Link to="/" className="text-gray-600 hover:text-unirise-red">
               Home
             </Link>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mx-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -111,14 +92,14 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
             </svg>
           </li>
           <li className="flex items-center">
-            <Link to="/products" className="text-scale-gray hover:text-scale-navy">
+            <Link to="/products" className="text-gray-600 hover:text-unirise-red">
               Products
             </Link>
             <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mx-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </li>
-          <li className="flex items-center text-scale-navy font-medium">
+          <li className="flex items-center text-unirise-red font-medium">
             {product.name}
           </li>
         </ol>
@@ -140,7 +121,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                 key={index}
                 onClick={() => setSelectedImage(image)}
                 className={`border rounded-md overflow-hidden transition-all ${
-                  selectedImage === image ? 'border-scale-teal ring-2 ring-scale-teal/20' : 'border-gray-200 hover:border-scale-teal/50'
+                  selectedImage === image ? 'border-unirise-red ring-2 ring-unirise-red/20' : 'border-gray-200 hover:border-unirise-red/50'
                 }`}
               >
                 <img src={image} alt={`${product.name} view ${index + 1}`} className="w-full h-full object-cover aspect-square" />
@@ -153,97 +134,62 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <div className="space-y-5">
           <div>
             <div className="flex items-center mb-2">
-              <span className="uppercase text-xs font-medium text-scale-teal bg-scale-teal/10 px-2 py-1 rounded">
+              <span className="uppercase text-xs font-medium text-unirise-red bg-unirise-red/10 px-2 py-1 rounded">
                 {product.category}
               </span>
               {product.stock < 10 && (
-                <span className="uppercase text-xs font-medium text-scale-orange bg-scale-orange/10 px-2 py-1 rounded ml-2">
-                  Low Stock: {product.stock} left
+                <span className="uppercase text-xs font-medium text-unirise-accent bg-unirise-accent/10 px-2 py-1 rounded ml-2">
+                  Limited Availability
                 </span>
               )}
             </div>
-            <h1 className="text-3xl font-bold text-scale-navy">{product.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-800">{product.name}</h1>
             
             <div className="flex items-center mt-2">
               {renderStars(product.rating)}
-              <span className="ml-2 text-scale-gray">({product.rating.toFixed(1)})</span>
+              <span className="ml-2 text-gray-600">({product.rating.toFixed(1)})</span>
               <span className="mx-2 text-gray-300">|</span>
-              <span className="text-scale-gray">In Stock: {product.stock}</span>
+              <span className="text-gray-600">Model: {product.specifications.model || 'Standard'}</span>
             </div>
             
             <div className="mt-4">
               {product.discountedPrice ? (
                 <div className="flex items-center">
-                  <span className="text-3xl font-bold text-scale-navy">${product.discountedPrice.toFixed(2)}</span>
-                  <span className="ml-3 text-lg text-scale-gray line-through">${product.price.toFixed(2)}</span>
-                  <span className="ml-2 text-sm text-white bg-scale-orange px-2 py-0.5 rounded-md">
+                  <span className="text-3xl font-bold text-gray-800">${product.discountedPrice.toFixed(2)}</span>
+                  <span className="ml-3 text-lg text-gray-500 line-through">${product.price.toFixed(2)}</span>
+                  <span className="ml-2 text-sm text-white bg-unirise-accent px-2 py-0.5 rounded-md">
                     {Math.round(((product.price - product.discountedPrice) / product.price) * 100)}% OFF
                   </span>
                 </div>
               ) : (
-                <span className="text-3xl font-bold text-scale-navy">${product.price.toFixed(2)}</span>
+                <span className="text-3xl font-bold text-gray-800">${product.price.toFixed(2)}</span>
               )}
             </div>
             
             <div className="border-t border-b py-4 my-6">
-              <p className="text-scale-gray">{product.description}</p>
+              <p className="text-gray-600">{product.description}</p>
             </div>
             
-            <div className="space-y-4">
-              <div className="flex items-center">
-                <div className="mr-6">
-                  <label htmlFor="quantity" className="block text-sm font-medium text-scale-gray mb-1">
-                    Quantity
-                  </label>
-                  <div className="flex items-center border rounded-md">
-                    <button
-                      onClick={handleDecreaseQuantity}
-                      className="px-3 py-2 text-scale-navy hover:bg-gray-100"
-                      disabled={quantity <= 1}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
-                      </svg>
-                    </button>
-                    <input
-                      type="text"
-                      id="quantity"
-                      value={quantity}
-                      readOnly
-                      className="w-12 border-x text-center py-2"
-                    />
-                    <button
-                      onClick={handleIncreaseQuantity}
-                      className="px-3 py-2 text-scale-navy hover:bg-gray-100"
-                      disabled={quantity >= product.stock}
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                
-                <div>
-                  <p className="text-sm font-medium text-scale-gray mb-1">
-                    Total Price
-                  </p>
-                  <p className="text-lg font-bold text-scale-navy">
-                    ${((product.discountedPrice || product.price) * quantity).toFixed(2)}
-                  </p>
-                </div>
+            <div className="space-y-4">              
+              <div className="flex space-x-4">
+                <Button onClick={handleContactClick} className="flex-1 bg-unirise-red hover:bg-unirise-red/90">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  Contact Us
+                </Button>
+                <Button onClick={handleRequestQuote} className="flex-1 bg-unirise-light hover:bg-unirise-light/90">
+                  Request Quote
+                </Button>
               </div>
               
-              <div className="flex space-x-4">
-                <Button onClick={handleAddToCart} className="flex-1 bg-scale-navy hover:bg-scale-navy/90">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                  Add to Cart
-                </Button>
-                <Button onClick={handleBuyNow} className="flex-1 bg-scale-teal hover:bg-scale-teal/90">
-                  Buy Now
-                </Button>
+              <div className="flex items-center justify-center mt-6 p-4 bg-gray-50 rounded-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-unirise-red mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-sm text-gray-600">
+                  For bulk orders or custom requirements, please contact our sales team directly.
+                </span>
               </div>
             </div>
           </div>
@@ -258,8 +204,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               onClick={() => setActiveTab('description')}
               className={`py-3 font-medium border-b-2 transition-colors ${
                 activeTab === 'description'
-                  ? 'border-scale-teal text-scale-teal'
-                  : 'border-transparent text-scale-gray hover:text-scale-navy'
+                  ? 'border-unirise-red text-unirise-red'
+                  : 'border-transparent text-gray-600 hover:text-gray-800'
               }`}
             >
               Description
@@ -268,8 +214,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               onClick={() => setActiveTab('features')}
               className={`py-3 font-medium border-b-2 transition-colors ${
                 activeTab === 'features'
-                  ? 'border-scale-teal text-scale-teal'
-                  : 'border-transparent text-scale-gray hover:text-scale-navy'
+                  ? 'border-unirise-red text-unirise-red'
+                  : 'border-transparent text-gray-600 hover:text-gray-800'
               }`}
             >
               Features
@@ -278,8 +224,8 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               onClick={() => setActiveTab('specifications')}
               className={`py-3 font-medium border-b-2 transition-colors ${
                 activeTab === 'specifications'
-                  ? 'border-scale-teal text-scale-teal'
-                  : 'border-transparent text-scale-gray hover:text-scale-navy'
+                  ? 'border-unirise-red text-unirise-red'
+                  : 'border-transparent text-gray-600 hover:text-gray-800'
               }`}
             >
               Specifications
@@ -290,20 +236,20 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         <div className="animate-fade-in">
           {activeTab === 'description' && (
             <div className="prose max-w-none">
-              <p className="text-scale-gray">{product.description}</p>
+              <p className="text-gray-600">{product.description}</p>
             </div>
           )}
           
           {activeTab === 'features' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-medium text-scale-navy">Key Features</h3>
+              <h3 className="text-lg font-medium text-gray-800">Key Features</h3>
               <ul className="space-y-2">
                 {product.features.map((feature, index) => (
                   <li key={index} className="flex items-start">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-scale-teal mr-2 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-unirise-red mr-2 flex-shrink-0 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-scale-gray">{feature}</span>
+                    <span className="text-gray-600">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -312,16 +258,16 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           
           {activeTab === 'specifications' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-medium text-scale-navy">Technical Specifications</h3>
+              <h3 className="text-lg font-medium text-gray-800">Technical Specifications</h3>
               <div className="overflow-hidden border rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
                   <tbody className="divide-y divide-gray-200">
                     {Object.entries(product.specifications).map(([key, value], index) => (
                       <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-scale-navy">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
                           {key}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-scale-gray">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                           {value}
                         </td>
                       </tr>

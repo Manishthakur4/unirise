@@ -1,19 +1,25 @@
 
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
 
 const Contact = () => {
+  const [searchParams] = useSearchParams();
+  const productId = searchParams.get('product');
+  const productName = searchParams.get('name');
+  const isQuoteRequest = searchParams.get('quote') === 'true';
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
     company: '',
-    subject: '',
-    message: '',
+    subject: isQuoteRequest ? 'Quote Request' : (productId ? 'Product Inquiry' : ''),
+    message: productName ? `I'm interested in learning more about the ${productName}.` : '',
     serviceInterest: []
   });
   
@@ -22,6 +28,19 @@ const Contact = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    // Update form when URL parameters change
+    if (productName) {
+      setFormData(prev => ({
+        ...prev,
+        subject: isQuoteRequest ? 'Quote Request' : 'Product Inquiry',
+        message: isQuoteRequest 
+          ? `I'd like to request a quote for the ${productName}.` 
+          : `I'm interested in learning more about the ${productName}.`
+      }));
+    }
+  }, [productName, isQuoteRequest]);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -57,7 +76,7 @@ const Contact = () => {
     setTimeout(() => {
       toast({
         title: "Message Sent Successfully",
-        description: "Thank you for contacting us. Our team will get back to you shortly.",
+        description: "Thank you for contacting Unirise. Our team will get back to you shortly.",
       });
       setIsSubmitting(false);
       setFormData({
@@ -78,12 +97,12 @@ const Contact = () => {
       <Navbar />
       <main className="pt-24 pb-16">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-scale-navy to-scale-teal text-white py-16">
+        <section className="bg-gradient-to-r from-unirise-red to-unirise-light text-white py-16">
           <div className="scale-container">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
               <p className="text-lg leading-relaxed">
-                Have questions or need assistance? Our team is here to help you find the perfect weighing solution for your needs.
+                Have questions about our weighing solutions? Our team at Unirise is here to help. We believe in service.
               </p>
             </div>
           </div>
@@ -94,41 +113,41 @@ const Contact = () => {
           <div className="scale-container">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="bg-gray-50 rounded-lg p-6 text-center flex flex-col items-center">
-                <div className="w-16 h-16 bg-scale-navy rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-unirise-red rounded-full flex items-center justify-center mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-scale-navy mb-2">Call Us</h3>
-                <p className="text-scale-gray mb-4">Our support team is available Monday-Friday, 8am-6pm EST</p>
-                <a href="tel:+15551234567" className="text-scale-teal hover:underline font-medium">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Call Us</h3>
+                <p className="text-gray-600 mb-4">Our support team is available Monday-Friday, 8am-6pm EST</p>
+                <a href="tel:+15551234567" className="text-unirise-red hover:underline font-medium">
                   (555) 123-4567
                 </a>
               </div>
               
               <div className="bg-gray-50 rounded-lg p-6 text-center flex flex-col items-center">
-                <div className="w-16 h-16 bg-scale-teal rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-unirise-light rounded-full flex items-center justify-center mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-scale-navy mb-2">Email Us</h3>
-                <p className="text-scale-gray mb-4">Send us an email and we'll respond as soon as possible</p>
-                <a href="mailto:info@scalesavvy.com" className="text-scale-teal hover:underline font-medium">
-                  info@scalesavvy.com
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Email Us</h3>
+                <p className="text-gray-600 mb-4">Send us an email and we'll respond as soon as possible</p>
+                <a href="mailto:info@unirise.com" className="text-unirise-red hover:underline font-medium">
+                  info@unirise.com
                 </a>
               </div>
               
               <div className="bg-gray-50 rounded-lg p-6 text-center flex flex-col items-center">
-                <div className="w-16 h-16 bg-scale-orange rounded-full flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-unirise-accent rounded-full flex items-center justify-center mb-4">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-scale-navy mb-2">Visit Us</h3>
-                <p className="text-scale-gray mb-4">Our headquarters are open for visitors Monday-Friday, 9am-5pm</p>
-                <address className="not-italic text-scale-teal">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Visit Us</h3>
+                <p className="text-gray-600 mb-4">Our headquarters are open for visitors Monday-Friday, 9am-5pm</p>
+                <address className="not-italic text-unirise-red">
                   123 Weighing Avenue<br />
                   Scale City, SC 12345
                 </address>
@@ -137,15 +156,25 @@ const Contact = () => {
             
             <div className="max-w-4xl mx-auto">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <div className="p-6 bg-scale-navy text-white">
+                <div className="p-6 bg-unirise-red text-white">
                   <h2 className="text-2xl font-bold mb-2">Send Us a Message</h2>
                   <p>Fill out the form below and we'll get back to you as soon as possible.</p>
+                  {productName && (
+                    <div className="mt-3 p-3 bg-white/20 rounded-lg">
+                      <p className="font-medium">
+                        {isQuoteRequest 
+                          ? `Requesting a quote for: ${productName}`
+                          : `Inquiry about: ${productName}`
+                        }
+                      </p>
+                    </div>
+                  )}
                 </div>
                 
                 <form onSubmit={handleSubmit} className="p-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div>
-                      <label htmlFor="firstName" className="block text-sm font-medium text-scale-navy mb-1">
+                      <label htmlFor="firstName" className="block text-sm font-medium text-gray-800 mb-1">
                         First Name *
                       </label>
                       <input
@@ -155,12 +184,12 @@ const Contact = () => {
                         value={formData.firstName}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2 border rounded-md focus:ring-scale-teal focus:border-scale-teal"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-unirise-red focus:border-unirise-red"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="lastName" className="block text-sm font-medium text-scale-navy mb-1">
+                      <label htmlFor="lastName" className="block text-sm font-medium text-gray-800 mb-1">
                         Last Name *
                       </label>
                       <input
@@ -170,12 +199,12 @@ const Contact = () => {
                         value={formData.lastName}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2 border rounded-md focus:ring-scale-teal focus:border-scale-teal"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-unirise-red focus:border-unirise-red"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-scale-navy mb-1">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-800 mb-1">
                         Email Address *
                       </label>
                       <input
@@ -185,12 +214,12 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2 border rounded-md focus:ring-scale-teal focus:border-scale-teal"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-unirise-red focus:border-unirise-red"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-scale-navy mb-1">
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-800 mb-1">
                         Phone Number
                       </label>
                       <input
@@ -199,12 +228,12 @@ const Contact = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-scale-teal focus:border-scale-teal"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-unirise-red focus:border-unirise-red"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="company" className="block text-sm font-medium text-scale-navy mb-1">
+                      <label htmlFor="company" className="block text-sm font-medium text-gray-800 mb-1">
                         Company
                       </label>
                       <input
@@ -213,12 +242,12 @@ const Contact = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-2 border rounded-md focus:ring-scale-teal focus:border-scale-teal"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-unirise-red focus:border-unirise-red"
                       />
                     </div>
                     
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-scale-navy mb-1">
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-800 mb-1">
                         Subject *
                       </label>
                       <select
@@ -227,11 +256,12 @@ const Contact = () => {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2 border rounded-md focus:ring-scale-teal focus:border-scale-teal"
+                        className="w-full px-4 py-2 border rounded-md focus:ring-unirise-red focus:border-unirise-red"
                       >
                         <option value="">Select a Subject</option>
-                        <option value="Sales Inquiry">Sales Inquiry</option>
-                        <option value="Product Support">Product Support</option>
+                        <option value="Product Inquiry">Product Inquiry</option>
+                        <option value="Quote Request">Quote Request</option>
+                        <option value="Technical Support">Technical Support</option>
                         <option value="Service Request">Service Request</option>
                         <option value="Warranty Claim">Warranty Claim</option>
                         <option value="General Question">General Question</option>
@@ -240,7 +270,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="mb-6">
-                    <label className="block text-sm font-medium text-scale-navy mb-1">
+                    <label className="block text-sm font-medium text-gray-800 mb-1">
                       What services are you interested in?
                     </label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -260,9 +290,9 @@ const Contact = () => {
                             value={service}
                             checked={formData.serviceInterest.includes(service)}
                             onChange={handleCheckboxChange}
-                            className="mr-2 rounded text-scale-teal focus:ring-scale-teal"
+                            className="mr-2 rounded text-unirise-red focus:ring-unirise-red"
                           />
-                          <label htmlFor={service.replace(/\s+/g, '')} className="text-scale-gray">
+                          <label htmlFor={service.replace(/\s+/g, '')} className="text-gray-600">
                             {service}
                           </label>
                         </div>
@@ -271,7 +301,7 @@ const Contact = () => {
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-sm font-medium text-scale-navy mb-1">
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-800 mb-1">
                       Message *
                     </label>
                     <textarea
@@ -281,14 +311,14 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-2 border rounded-md focus:ring-scale-teal focus:border-scale-teal"
+                      className="w-full px-4 py-2 border rounded-md focus:ring-unirise-red focus:border-unirise-red"
                       placeholder="Please provide details about your inquiry..."
                     ></textarea>
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="bg-scale-teal hover:bg-scale-teal/90"
+                    className="bg-unirise-red hover:bg-unirise-red/90"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -304,34 +334,34 @@ const Contact = () => {
           <div className="scale-container">
             <div className="max-w-3xl mx-auto text-center mb-8">
               <h2 className="section-heading">Our Location</h2>
-              <p className="text-scale-gray">
+              <p className="text-gray-600">
                 Visit our headquarters to see our showroom and meet with our experts in person.
               </p>
             </div>
             
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="aspect-[16/9] w-full bg-gray-200 flex items-center justify-center">
-                <p className="text-scale-gray">Interactive Map Would Be Embedded Here</p>
+                <p className="text-gray-600">Interactive Map Would Be Embedded Here</p>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-scale-navy mb-2">ScaleSavvy Headquarters</h3>
-                <address className="not-italic text-scale-gray mb-4">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Unirise Headquarters</h3>
+                <address className="not-italic text-gray-600 mb-4">
                   123 Weighing Avenue<br />
                   Scale City, SC 12345<br />
                   United States
                 </address>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium text-scale-navy mb-1">Business Hours</h4>
-                    <p className="text-scale-gray">Monday-Friday: 9am-5pm EST</p>
-                    <p className="text-scale-gray">Saturday: 10am-2pm EST</p>
-                    <p className="text-scale-gray">Sunday: Closed</p>
+                    <h4 className="font-medium text-gray-800 mb-1">Business Hours</h4>
+                    <p className="text-gray-600">Monday-Friday: 9am-5pm EST</p>
+                    <p className="text-gray-600">Saturday: 10am-2pm EST</p>
+                    <p className="text-gray-600">Sunday: Closed</p>
                   </div>
                   <div>
-                    <h4 className="font-medium text-scale-navy mb-1">Contact</h4>
-                    <p className="text-scale-gray">Phone: (555) 123-4567</p>
-                    <p className="text-scale-gray">Email: info@scalesavvy.com</p>
-                    <p className="text-scale-gray">Fax: (555) 123-4568</p>
+                    <h4 className="font-medium text-gray-800 mb-1">Contact</h4>
+                    <p className="text-gray-600">Phone: (555) 123-4567</p>
+                    <p className="text-gray-600">Email: info@unirise.com</p>
+                    <p className="text-gray-600">Fax: (555) 123-4568</p>
                   </div>
                 </div>
               </div>
@@ -344,32 +374,32 @@ const Contact = () => {
           <div className="scale-container">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-xl font-bold text-scale-navy mb-4">Need Technical Support?</h3>
-                <p className="text-scale-gray mb-4">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Need Technical Support?</h3>
+                <p className="text-gray-600 mb-4">
                   Our technical support team is available to help with product questions, troubleshooting, and more.
                 </p>
-                <a href="mailto:support@scalesavvy.com" className="text-scale-teal hover:underline font-medium">
-                  support@scalesavvy.com
+                <a href="mailto:support@unirise.com" className="text-unirise-red hover:underline font-medium">
+                  support@unirise.com
                 </a>
               </div>
               
               <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-xl font-bold text-scale-navy mb-4">Request a Catalog</h3>
-                <p className="text-scale-gray mb-4">
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Request a Catalog</h3>
+                <p className="text-gray-600 mb-4">
                   Browse our complete product line in our comprehensive digital or print catalog.
                 </p>
-                <a href="#" className="text-scale-teal hover:underline font-medium">
+                <a href="#" className="text-unirise-red hover:underline font-medium">
                   Request Catalog
                 </a>
               </div>
               
               <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300">
-                <h3 className="text-xl font-bold text-scale-navy mb-4">Career Opportunities</h3>
-                <p className="text-scale-gray mb-4">
-                  Interested in joining our team? Check out our current job openings.
+                <h3 className="text-xl font-bold text-gray-800 mb-4">Service Center</h3>
+                <p className="text-gray-600 mb-4">
+                  Unirise offers professional calibration, repair, and maintenance services for all types of scales.
                 </p>
-                <a href="#" className="text-scale-teal hover:underline font-medium">
-                  View Careers
+                <a href="#" className="text-unirise-red hover:underline font-medium">
+                  Service Details
                 </a>
               </div>
             </div>

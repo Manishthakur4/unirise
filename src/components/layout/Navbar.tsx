@@ -41,7 +41,7 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="scale-container flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <div className="text-scale-navy font-bold text-2xl">Scale<span className="text-scale-teal">Savvy</span></div>
+          <img src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" alt="Unirise Logo" className="h-12" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -50,14 +50,16 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-scale-teal ${
-                isActive(link.path) ? 'text-scale-teal' : 'text-scale-navy'
+              className={`text-sm font-medium transition-colors hover:text-unirise-red ${
+                isActive(link.path) ? 'text-unirise-red' : 'text-gray-800'
               }`}
             >
               {link.name}
             </Link>
           ))}
-          <Button className="bg-scale-teal hover:bg-scale-teal/90">Get a Quote</Button>
+          <Button asChild className="bg-unirise-red hover:bg-unirise-red/90">
+            <Link to="/contact">Contact Us</Link>
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -67,7 +69,7 @@ const Navbar = () => {
           aria-label="Toggle Menu"
         >
           <svg
-            className="w-6 h-6 text-scale-navy"
+            className="w-6 h-6 text-gray-800"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -92,15 +94,17 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`px-4 py-2 text-sm font-medium hover:bg-scale-light rounded ${
-                  isActive(link.path) ? 'text-scale-teal bg-scale-light' : 'text-scale-navy'
+                className={`px-4 py-2 text-sm font-medium hover:bg-gray-100 rounded ${
+                  isActive(link.path) ? 'text-unirise-red bg-gray-100' : 'text-gray-800'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
             <div className="px-4 pt-2">
-              <Button className="w-full bg-scale-teal hover:bg-scale-teal/90">Get a Quote</Button>
+              <Button asChild className="w-full bg-unirise-red hover:bg-unirise-red/90">
+                <Link to="/contact">Contact Us</Link>
+              </Button>
             </div>
           </div>
         </div>

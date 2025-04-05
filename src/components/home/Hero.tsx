@@ -4,23 +4,23 @@ import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
-    <div className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-scale-light to-white">
+    <div className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-white to-gray-100">
       <div className="scale-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold text-scale-navy leading-tight">
-              Precision <span className="text-scale-teal">Weighing</span> Solutions for Every Need
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">
+              Precision <span className="text-unirise-red">Weighing</span> Solutions for Every Need
             </h1>
-            <p className="mt-6 text-xl text-scale-gray">
-              From laboratory precision to industrial strength, find the perfect scale for your business. Trusted by professionals across industries.
+            <p className="mt-6 text-xl text-gray-600">
+              From laboratory precision to industrial strength, find the perfect scale with Unirise. We believe in service excellence.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <Button asChild className="text-lg px-8 py-6 bg-scale-navy hover:bg-scale-navy/90">
+              <Button asChild className="text-lg px-8 py-6 bg-unirise-red hover:bg-unirise-red/90">
                 <Link to="/products">
-                  Shop Scales
+                  Browse Scales
                 </Link>
               </Button>
-              <Button asChild variant="outline" className="text-lg px-8 py-6 border-scale-navy text-scale-navy hover:bg-scale-navy/10">
+              <Button asChild variant="outline" className="text-lg px-8 py-6 border-unirise-red text-unirise-red hover:bg-unirise-red/10">
                 <Link to="/services">
                   Our Services
                 </Link>
@@ -28,11 +28,11 @@ const Hero = () => {
             </div>
             <div className="mt-10 flex items-center space-x-6">
               <div className="flex -space-x-4">
-                <div className="w-10 h-10 rounded-full bg-scale-navy flex items-center justify-center text-white text-xs">TK</div>
-                <div className="w-10 h-10 rounded-full bg-scale-teal flex items-center justify-center text-white text-xs">MP</div>
-                <div className="w-10 h-10 rounded-full bg-scale-orange flex items-center justify-center text-white text-xs">JD</div>
+                <div className="w-10 h-10 rounded-full bg-unirise-red flex items-center justify-center text-white text-xs">TK</div>
+                <div className="w-10 h-10 rounded-full bg-unirise-light flex items-center justify-center text-white text-xs">MP</div>
+                <div className="w-10 h-10 rounded-full bg-unirise-accent flex items-center justify-center text-white text-xs">JD</div>
               </div>
-              <p className="text-scale-gray">Trusted by <span className="font-bold">1000+</span> businesses</p>
+              <p className="text-gray-600">Trusted by <span className="font-bold">1000+</span> businesses</p>
             </div>
           </div>
           <div className="relative animate-scale-in lg:pl-10">
@@ -44,13 +44,13 @@ const Hero = () => {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute top-0 left-0 bg-scale-teal text-white px-4 py-2 rounded-br-lg font-semibold">
+              <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
                 Featured
               </div>
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-scale-orange text-white p-4 rounded-lg shadow-lg">
-              <p className="font-bold">Spring Sale</p>
-              <p className="text-2xl font-bold">Up to 25% OFF</p>
+            <div className="absolute -bottom-6 -right-6 bg-unirise-accent text-white p-4 rounded-lg shadow-lg">
+              <p className="font-bold">Contact Us</p>
+              <p className="text-2xl font-bold">For Best Deals</p>
             </div>
           </div>
         </div>

@@ -51,7 +51,7 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
   };
 
   return (
-    <div className={`group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-200 hover:shadow-xl ${featured ? 'border-2 border-scale-teal' : ''}`}>
+    <div className={`group bg-white rounded-lg shadow-md overflow-hidden transition-all duration-200 hover:shadow-xl ${featured ? 'border-2 border-unirise-red' : ''}`}>
       <div className="relative">
         <Link to={`/product/${id}`}>
           <div className="overflow-hidden">
@@ -62,12 +62,12 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
             />
           </div>
           {isNewArrival && (
-            <div className="absolute top-4 left-4 bg-scale-orange text-white px-2 py-1 rounded-md text-sm font-medium">
+            <div className="absolute top-4 left-4 bg-unirise-accent text-white px-2 py-1 rounded-md text-sm font-medium">
               New Arrival
             </div>
           )}
           {isFeatured && !isNewArrival && (
-            <div className="absolute top-4 left-4 bg-scale-teal text-white px-2 py-1 rounded-md text-sm font-medium">
+            <div className="absolute top-4 left-4 bg-unirise-red text-white px-2 py-1 rounded-md text-sm font-medium">
               Featured
             </div>
           )}
@@ -77,42 +77,44 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
       <div className="p-5">
         <Link to={`/product/${id}`}>
           <div className="mb-2">
-            <span className="text-xs font-medium uppercase text-scale-gray">
+            <span className="text-xs font-medium uppercase text-gray-600">
               {category.charAt(0).toUpperCase() + category.slice(1)}
             </span>
-            <h3 className="text-lg font-bold text-scale-navy group-hover:text-scale-teal transition-colors">
+            <h3 className="text-lg font-bold text-gray-800 group-hover:text-unirise-red transition-colors">
               {name}
             </h3>
           </div>
           
           <div className="flex items-center mb-3">
             {renderStars(rating)}
-            <span className="ml-2 text-scale-gray text-sm">({rating.toFixed(1)})</span>
+            <span className="ml-2 text-gray-600 text-sm">({rating.toFixed(1)})</span>
           </div>
           
           <div className="flex items-center mb-4">
             {discountedPrice ? (
               <>
-                <span className="text-xl font-bold text-scale-navy">${discountedPrice.toFixed(2)}</span>
-                <span className="ml-2 text-scale-gray line-through">${price.toFixed(2)}</span>
-                <span className="ml-2 text-sm text-white bg-scale-orange px-2 py-0.5 rounded-md">
+                <span className="text-xl font-bold text-gray-800">${discountedPrice.toFixed(2)}</span>
+                <span className="ml-2 text-gray-500 line-through">${price.toFixed(2)}</span>
+                <span className="ml-2 text-sm text-white bg-unirise-accent px-2 py-0.5 rounded-md">
                   {Math.round(((price - discountedPrice) / price) * 100)}% OFF
                 </span>
               </>
             ) : (
-              <span className="text-xl font-bold text-scale-navy">${price.toFixed(2)}</span>
+              <span className="text-xl font-bold text-gray-800">${price.toFixed(2)}</span>
             )}
           </div>
         </Link>
         
         <div className="flex space-x-2">
-          <Button asChild className="flex-1 bg-scale-navy hover:bg-scale-navy/90">
+          <Button asChild className="flex-1 bg-unirise-red hover:bg-unirise-red/90">
             <Link to={`/product/${id}`}>View Details</Link>
           </Button>
-          <Button className="bg-scale-teal hover:bg-scale-teal/90" size="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-            </svg>
+          <Button asChild className="bg-unirise-light hover:bg-unirise-light/90">
+            <Link to="/contact" className="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+            </Link>
           </Button>
         </div>
       </div>
