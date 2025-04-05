@@ -30,7 +30,7 @@ const Hero = () => {
               <div className="flex -space-x-4">
                 <div className="w-10 h-10 rounded-full bg-unirise-red flex items-center justify-center text-white text-xs">TK</div>
                 <div className="w-10 h-10 rounded-full bg-unirise-light flex items-center justify-center text-white text-xs">MP</div>
-                <div className="w-10 h-10 rounded-full bg-unirise-accent flex items-center justify-center text-white text-xs">JD</div>
+                <div className="w-10 h-10 rounded-full bg-[#FF5B64] flex items-center justify-center text-white text-xs">JD</div>
               </div>
               <p className="text-gray-600">Trusted by <span className="font-bold">1000+</span> businesses</p>
             </div>
@@ -48,7 +48,7 @@ const Hero = () => {
                 Featured
               </div>
             </div>
-            <div className="absolute -bottom-6 -right-6 bg-unirise-accent text-white p-4 rounded-lg shadow-lg">
+            <div className="absolute -bottom-6 -right-6 bg-[#FF5B64] text-white p-4 rounded-lg shadow-lg">
               <p className="font-bold">Contact Us</p>
               <p className="text-2xl font-bold">For Best Deals</p>
             </div>

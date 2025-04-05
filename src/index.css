@@ -111,7 +111,7 @@
   }
   
   .btn-accent {
-    @apply bg-unirise-accent hover:bg-unirise-accent/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
+    @apply bg-[#FF5B64] hover:bg-[#FF5B64]/90 text-white font-semibold py-2 px-4 rounded transition duration-200;
   }
   
   .btn-outline {
