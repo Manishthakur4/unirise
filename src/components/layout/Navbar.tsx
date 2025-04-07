@@ -41,7 +41,7 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="scale-container flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <img src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" alt="Unirise Logo" className="h-12" />
+          <img src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" alt="Unirise Logo" className="h-16 md:h-20" />
         </Link>
 
         {/* Desktop Navigation */}

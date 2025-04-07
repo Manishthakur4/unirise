@@ -2,6 +2,7 @@
 import Hero from '@/components/home/Hero';
 import FeaturedProducts from '@/components/home/FeaturedProducts';
 import Benefits from '@/components/home/Benefits';
+import BrandPartners from '@/components/home/BrandPartners';
 import Footer from '@/components/layout/Footer';
 import Navbar from '@/components/layout/Navbar';
 import { Link } from 'react-router-dom';
@@ -14,6 +15,7 @@ const Index = () => {
       <main>
         <Hero />
         <FeaturedProducts />
+        <BrandPartners />
         <Benefits />
         
         {/* Slogan Section */}
