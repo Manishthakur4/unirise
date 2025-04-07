@@ -17,7 +17,7 @@ const BrandPartners = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
-        prevIndex === brands.length - 5 ? 0 : prevIndex + 1
+        prevIndex === brands.length - 1 ? 0 : prevIndex + 1
       );
     }, 3000);
 
@@ -25,60 +25,45 @@ const BrandPartners = () => {
   }, [brands.length]);
 
   return (
-    <section className="py-16 bg-gray-50">
-      <div className="scale-container">
-        <h2 className="section-heading text-center mb-12">Trusted by Leading Brands</h2>
-        
-        <div className="relative overflow-hidden">
-          <div className="absolute top-1/2 -left-4 transform -translate-y-1/2 z-10">
-            <button 
-              onClick={() => setCurrentIndex(prev => prev === 0 ? brands.length - 5 : prev - 1)}
-              className="bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-shadow focus:outline-none"
+    <div className="fixed right-0 top-1/3 z-40 bg-white/90 shadow-lg rounded-l-lg p-4 transition-all duration-300 hover:translate-x-0 translate-x-2 border-l border-t border-b border-gray-200 max-w-[150px]">
+      <h3 className="text-lg font-bold text-unirise-red mb-4 text-center">Our Clients</h3>
+      
+      <div className="overflow-hidden">
+        <div 
+          className="flex flex-col items-center gap-6 transition-transform duration-500" 
+          style={{ transform: `translateY(-${currentIndex * 100}px)` }}
+        >
+          {brands.map((brand, index) => (
+            <div 
+              key={index} 
+              className={`w-full aspect-square flex items-center justify-center transition-opacity duration-300 ${
+                index === currentIndex ? 'opacity-100' : 'opacity-0 absolute'
+              }`}
+              style={{
+                display: index === currentIndex ? 'flex' : 'none'
+              }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-unirise-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-          </div>
-          
-          <div className="flex items-center justify-center">
-            {/* Visible brands */}
-            <div className="flex items-center space-x-8 py-8 transition-transform duration-500" style={{ transform: `translateX(-${currentIndex * 200}px)` }}>
-              {brands.map((brand, index) => (
-                <div key={index} className="w-40 h-24 flex-shrink-0 mx-4">
-                  <img 
-                    src={brand.image} 
-                    alt={brand.name} 
-                    className="w-full h-full object-contain filter transition hover:brightness-110"
-                  />
-                </div>
-              ))}
+              <img 
+                src={brand.image} 
+                alt={brand.name} 
+                className="w-full object-contain"
+              />
             </div>
-          </div>
-          
-          <div className="absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-            <button 
-              onClick={() => setCurrentIndex(prev => prev === brands.length - 5 ? 0 : prev + 1)}
-              className="bg-white p-2 rounded-full shadow-md hover:shadow-lg transition-shadow focus:outline-none"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-unirise-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-        
-        <div className="flex justify-center mt-8">
-          {brands.slice(0, brands.length - 4).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`h-2 w-2 rounded-full mx-1 ${currentIndex === index ? 'bg-unirise-red' : 'bg-gray-300'}`}
-            />
           ))}
         </div>
       </div>
-    </section>
+      
+      <div className="flex justify-center mt-4 gap-1">
+        {brands.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`h-2 w-2 rounded-full ${currentIndex === index ? 'bg-unirise-red' : 'bg-gray-300'}`}
+            aria-label={`Go to brand ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 

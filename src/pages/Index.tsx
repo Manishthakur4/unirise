@@ -12,11 +12,10 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
+      <BrandPartners />
       <main>
         <Hero />
         <FeaturedProducts />
-        <BrandPartners />
-        <Benefits />
         
         {/* Slogan Section */}
         <section className="py-16 bg-unirise-red text-white">
@@ -31,6 +30,8 @@ const Index = () => {
             </Button>
           </div>
         </section>
+        
+        <Benefits />
       </main>
       <Footer />
     </div>
