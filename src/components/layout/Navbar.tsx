@@ -41,7 +41,11 @@ const Navbar = () => {
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
       <div className="scale-container flex justify-between items-center">
         <Link to="/" className="flex items-center">
-          <img src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" alt="Unirise Logo" className="h-20 md:h-24" />
+          <img 
+            src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" 
+            alt="Unirise Logo" 
+            className="h-16 w-auto object-contain"
+          />
         </Link>
 
         {/* Desktop Navigation */}
@@ -57,7 +61,7 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Button asChild className="bg-unirise-red hover:bg-unirise-red/90">
+          <Button asChild className="bg-unirise-red hover:bg-[#E01021]/90">
             <Link to="/contact">Contact Us</Link>
           </Button>
         </div>
@@ -102,7 +106,7 @@ const Navbar = () => {
               </Link>
             ))}
             <div className="px-4 pt-2">
-              <Button asChild className="w-full bg-unirise-red hover:bg-unirise-red/90">
+              <Button asChild className="w-full bg-unirise-red hover:bg-[#E01021]/90">
                 <Link to="/contact">Contact Us</Link>
               </Button>
             </div>
