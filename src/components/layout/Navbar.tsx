@@ -44,7 +44,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" 
             alt="Unirise Logo" 
-            className="h-16 w-auto object-contain"
+            className="h-20 w-auto object-contain"
           />
         </Link>
 

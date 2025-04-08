@@ -25,32 +25,24 @@ const BrandPartners = () => {
   }, [brands.length]);
 
   return (
-    <div className="fixed right-0 top-1/3 z-40 bg-white/90 shadow-lg rounded-l-lg p-4 transition-all duration-300 hover:translate-x-0 translate-x-2 border-l border-t border-b border-gray-200 max-w-[150px]">
+    <div className="fixed right-0 top-1/3 z-40 bg-white shadow-lg rounded-l-lg p-4 transition-all duration-300 hover:translate-x-0 translate-x-2 border-l border-t border-b border-gray-200 max-w-[150px]">
       <h3 className="text-lg font-bold text-unirise-red mb-4 text-center">Our Clients</h3>
       
-      <div className="overflow-hidden w-full h-[100px] flex items-center justify-center">
-        <div 
-          className="flex flex-col items-center gap-6 transition-transform duration-500" 
-          style={{ transform: `translateY(-${currentIndex * 100}px)` }}
-        >
-          {brands.map((brand, index) => (
-            <div 
-              key={index} 
-              className={`w-full h-[100px] flex items-center justify-center transition-opacity duration-300 ${
-                index === currentIndex ? 'opacity-100' : 'opacity-0 absolute'
-              }`}
-              style={{
-                display: index === currentIndex ? 'flex' : 'none'
-              }}
-            >
-              <img 
-                src={brand.image} 
-                alt={brand.name} 
-                className="max-w-full max-h-full object-contain"
-              />
-            </div>
-          ))}
-        </div>
+      <div className="w-full h-[120px] flex items-center justify-center">
+        {brands.map((brand, index) => (
+          <div 
+            key={index} 
+            className={`w-full h-full flex items-center justify-center absolute transition-opacity duration-500 ${
+              index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
+          >
+            <img 
+              src={brand.image} 
+              alt={brand.name} 
+              className="max-w-full max-h-full object-contain"
+            />
+          </div>
+        ))}
       </div>
       
       <div className="flex justify-center mt-4 gap-1">
