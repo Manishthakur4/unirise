@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ui/ProductCard';
 import products from '@/data/products';
+import { 
+  Carousel, 
+  CarouselContent, 
+  CarouselItem, 
+  CarouselNext, 
+  CarouselPrevious 
+} from "@/components/ui/carousel";
 
 const FeaturedProducts = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -50,13 +57,35 @@ const FeaturedProducts = () => {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} product={product} featured={product.isFeatured} />
-          ))}
-        </div>
+        {filteredProducts.length > 0 ? (
+          <div className="mb-12">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {filteredProducts.map((product) => (
+                  <CarouselItem key={product.id} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                    <ProductCard product={product} featured={product.isFeatured} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center mt-6">
+                <CarouselPrevious className="relative static mr-2 h-10 w-10 rounded-full" />
+                <CarouselNext className="relative static ml-2 h-10 w-10 rounded-full" />
+              </div>
+            </Carousel>
+          </div>
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-scale-gray">No products found in this category.</p>
+          </div>
+        )}
         
-        <div className="mt-12 text-center">
+        <div className="mt-4 text-center">
           <Button asChild className="bg-scale-navy hover:bg-scale-navy/90 text-lg px-8 py-6">
             <Link to="/products">View All Products</Link>
           </Button>
