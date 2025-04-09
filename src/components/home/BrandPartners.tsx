@@ -2,9 +2,6 @@
 import { useState, useEffect, useRef } from 'react';
 
 const BrandPartners = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  
   const brands = [
     { name: 'GATI KWE', image: '/lovable-uploads/551addfc-38fa-47d1-bbfc-b2ba41986d23.png' },
     { name: 'C&S Electric', image: '/lovable-uploads/41cb2634-50e7-42d9-9888-b8d19563b7fe.png' },
@@ -15,32 +12,67 @@ const BrandPartners = () => {
     { name: 'Big Basket', image: '/lovable-uploads/71eed01b-7c81-4df0-bfda-3d753cc2400b.png' },
   ];
 
-  // Auto scroll logic
+  // Double the brands array to create a seamless loop
+  const duplicatedBrands = [...brands, ...brands];
+  
+  // Ref for animation
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Auto scroll with continuous animation
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
-        prevIndex === brands.length - 1 ? 0 : prevIndex + 1
-      );
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [brands.length]);
+    const scrollContainer = containerRef.current;
+    if (!scrollContainer) return;
+    
+    // Set initial position
+    let animationId: number;
+    let startTime: number;
+    let currentPosition = 0;
+    
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      
+      // Speed of scroll (adjust as needed)
+      const scrollSpeed = 0.5; // pixels per millisecond
+      
+      // Calculate new position
+      currentPosition = (currentPosition + scrollSpeed) % (scrollContainer.scrollHeight / 2);
+      
+      // Apply position - move upward
+      scrollContainer.scrollTop = currentPosition;
+      
+      // If we've scrolled through the first set, reset to top to create seamless loop
+      if (currentPosition >= scrollContainer.scrollHeight / 2) {
+        currentPosition = 0;
+        scrollContainer.scrollTop = 0;
+      }
+      
+      animationId = requestAnimationFrame(animate);
+    };
+    
+    animationId = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
+  }, []);
 
   return (
     <div className="fixed right-0 top-1/3 z-40 bg-white shadow-lg rounded-l-lg p-4 transition-all duration-300 hover:translate-x-0 translate-x-2 border-l border-t border-b border-gray-200 max-w-[150px]">
       <h3 className="text-lg font-bold text-unirise-red mb-4 text-center">Our Clients</h3>
       
-      <div ref={containerRef} className="w-full h-[150px] overflow-hidden relative">
-        <div 
-          className="flex flex-col transition-transform duration-1000 absolute w-full"
-          style={{ 
-            transform: `translateY(${-currentIndex * 150}px)`,
-          }}
-        >
-          {brands.map((brand, index) => (
+      <div 
+        ref={containerRef} 
+        className="w-full h-[200px] overflow-hidden relative"
+        style={{ scrollBehavior: 'smooth' }}
+      >
+        <div className="flex flex-col w-full">
+          {duplicatedBrands.map((brand, index) => (
             <div 
               key={index} 
-              className="w-full h-[150px] flex items-center justify-center shrink-0"
+              className="w-full h-[100px] flex items-center justify-center shrink-0 my-2"
             >
               <img 
                 src={brand.image} 
@@ -50,17 +82,6 @@ const BrandPartners = () => {
             </div>
           ))}
         </div>
-      </div>
-      
-      <div className="flex justify-center mt-4 gap-1">
-        {brands.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`h-2 w-2 rounded-full ${currentIndex === index ? 'bg-unirise-red' : 'bg-gray-300'}`}
-            aria-label={`Go to brand ${index + 1}`}
-          />
-        ))}
       </div>
     </div>
   );

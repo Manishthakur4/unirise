@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import { useMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -15,7 +15,7 @@ const navItems = [
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,11 +35,10 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" 
             alt="Unirise Logo" 
-            className="h-24 w-auto object-contain"
+            className="h-32 w-auto object-contain"
           />
         </Link>
 
-        {/* Desktop navigation */}
         <div className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
             <Link
@@ -57,7 +56,6 @@ const Navbar = () => {
           </Button>
         </div>
 
-        {/* Mobile Menu Button */}
         {isMobile && (
           <Button
             variant="ghost"
@@ -70,7 +68,6 @@ const Navbar = () => {
           </Button>
         )}
 
-        {/* Mobile Menu */}
         {isMobile && (
           <div
             className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${

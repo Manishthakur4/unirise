@@ -13,7 +13,7 @@ const Index = () => {
     <div className="min-h-screen bg-white">
       <Navbar />
       <BrandPartners />
-      <main className="pt-28"> {/* Increased padding to account for larger logo */}
+      <main className="pt-36"> {/* Increased padding to account for larger logo */}
         <Hero />
         <FeaturedProducts />
         
