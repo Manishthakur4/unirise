@@ -25,7 +25,7 @@ const BrandPartners = () => {
           
           // Apply smooth scroll animation
           const itemHeight = scrollContainerRef.current?.clientHeight ? 
-            scrollContainerRef.current.clientHeight / 3 : 100;
+            scrollContainerRef.current.clientHeight / 5 : 100; // Adjusted for 5 items
             
           scrollContainerRef.current?.scrollTo({
             top: nextIndex * itemHeight,
@@ -46,13 +46,13 @@ const BrandPartners = () => {
       
       <div 
         ref={scrollContainerRef} 
-        className="w-full h-[200px] overflow-y-hidden relative"
+        className="w-full h-[350px] overflow-y-hidden relative" // Increased height from 200px to 350px
       >
         <div className="flex flex-col w-full">
           {brands.map((brand, index) => (
             <div 
               key={index} 
-              className="w-full h-[66px] flex items-center justify-center shrink-0 my-2"
+              className="w-full h-[70px] flex items-center justify-center shrink-0 my-2" // Increased height slightly from 66px to 70px
             >
               <img 
                 src={brand.image} 
