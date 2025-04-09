@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -35,7 +36,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" 
             alt="Unirise Logo" 
-            className="h-32 w-auto object-contain"
+            className="h-24 w-auto object-contain" 
           />
         </Link>
 

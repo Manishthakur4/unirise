@@ -12,72 +12,52 @@ const BrandPartners = () => {
     { name: 'Big Basket', image: '/lovable-uploads/71eed01b-7c81-4df0-bfda-3d753cc2400b.png' },
   ];
 
-  // Double the brands array to create a seamless loop
-  const duplicatedBrands = [...brands, ...brands];
-  
-  // Ref for animation
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Auto scroll with continuous animation
+  // Animation interval in milliseconds
+  const scrollInterval = 3000;
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   useEffect(() => {
-    const scrollContainer = containerRef.current;
-    if (!scrollContainer) return;
-    
-    // Set initial position
-    let animationId: number;
-    let startTime: number;
-    let currentPosition = 0;
-    
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const elapsed = timestamp - startTime;
-      
-      // Speed of scroll (adjust as needed)
-      const scrollSpeed = 0.5; // pixels per millisecond
-      
-      // Calculate new position
-      currentPosition = (currentPosition + scrollSpeed) % (scrollContainer.scrollHeight / 2);
-      
-      // Apply position - move upward
-      scrollContainer.scrollTop = currentPosition;
-      
-      // If we've scrolled through the first set, reset to top to create seamless loop
-      if (currentPosition >= scrollContainer.scrollHeight / 2) {
-        currentPosition = 0;
-        scrollContainer.scrollTop = 0;
+    const intervalId = setInterval(() => {
+      if (scrollContainerRef.current) {
+        setCurrentIndex((prevIndex) => {
+          const nextIndex = (prevIndex + 1) % brands.length;
+          
+          // Apply smooth scroll animation
+          const itemHeight = scrollContainerRef.current?.clientHeight ? 
+            scrollContainerRef.current.clientHeight / 3 : 100;
+            
+          scrollContainerRef.current?.scrollTo({
+            top: nextIndex * itemHeight,
+            behavior: 'smooth'
+          });
+          
+          return nextIndex;
+        });
       }
-      
-      animationId = requestAnimationFrame(animate);
-    };
-    
-    animationId = requestAnimationFrame(animate);
-    
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, []);
+    }, scrollInterval);
+
+    return () => clearInterval(intervalId);
+  }, [brands.length]);
 
   return (
     <div className="fixed right-0 top-1/3 z-40 bg-white shadow-lg rounded-l-lg p-4 transition-all duration-300 hover:translate-x-0 translate-x-2 border-l border-t border-b border-gray-200 max-w-[150px]">
       <h3 className="text-lg font-bold text-unirise-red mb-4 text-center">Our Clients</h3>
       
       <div 
-        ref={containerRef} 
-        className="w-full h-[200px] overflow-hidden relative"
-        style={{ scrollBehavior: 'smooth' }}
+        ref={scrollContainerRef} 
+        className="w-full h-[200px] overflow-y-hidden relative"
       >
         <div className="flex flex-col w-full">
-          {duplicatedBrands.map((brand, index) => (
+          {brands.map((brand, index) => (
             <div 
               key={index} 
-              className="w-full h-[100px] flex items-center justify-center shrink-0 my-2"
+              className="w-full h-[66px] flex items-center justify-center shrink-0 my-2"
             >
               <img 
                 src={brand.image} 
                 alt={brand.name} 
-                className="max-w-full max-h-full object-contain" 
+                className="max-w-full max-h-full object-contain"
               />
             </div>
           ))}
