@@ -17,7 +17,7 @@ const Products = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      <main className="pt-24 pb-16">
+      <main className="pt-32 pb-16"> {/* Increased padding-top from 24 to 32 to prevent content from being hidden by navbar */}
         <div className="scale-container">
           <header className="mb-8">
             <h1 className="text-4xl font-bold text-scale-navy mb-4">
