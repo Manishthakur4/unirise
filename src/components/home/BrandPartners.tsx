@@ -1,8 +1,9 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const BrandPartners = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
   
   const brands = [
     { name: 'GATI KWE', image: '/lovable-uploads/551addfc-38fa-47d1-bbfc-b2ba41986d23.png' },
@@ -14,6 +15,7 @@ const BrandPartners = () => {
     { name: 'Big Basket', image: '/lovable-uploads/71eed01b-7c81-4df0-bfda-3d753cc2400b.png' },
   ];
 
+  // Auto scroll logic
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
@@ -28,21 +30,26 @@ const BrandPartners = () => {
     <div className="fixed right-0 top-1/3 z-40 bg-white shadow-lg rounded-l-lg p-4 transition-all duration-300 hover:translate-x-0 translate-x-2 border-l border-t border-b border-gray-200 max-w-[150px]">
       <h3 className="text-lg font-bold text-unirise-red mb-4 text-center">Our Clients</h3>
       
-      <div className="w-full h-[120px] flex items-center justify-center">
-        {brands.map((brand, index) => (
-          <div 
-            key={index} 
-            className={`w-full h-full flex items-center justify-center absolute transition-opacity duration-500 ${
-              index === currentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-            }`}
-          >
-            <img 
-              src={brand.image} 
-              alt={brand.name} 
-              className="max-w-full max-h-full object-contain"
-            />
-          </div>
-        ))}
+      <div ref={containerRef} className="w-full h-[150px] overflow-hidden relative">
+        <div 
+          className="flex flex-col transition-transform duration-1000 absolute w-full"
+          style={{ 
+            transform: `translateY(${-currentIndex * 150}px)`,
+          }}
+        >
+          {brands.map((brand, index) => (
+            <div 
+              key={index} 
+              className="w-full h-[150px] flex items-center justify-center shrink-0"
+            >
+              <img 
+                src={brand.image} 
+                alt={brand.name} 
+                className="max-w-full max-h-full object-contain" 
+              />
+            </div>
+          ))}
+        </div>
       </div>
       
       <div className="flex justify-center mt-4 gap-1">

@@ -1,119 +1,120 @@
-
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
+import { useMobile } from '@/hooks/use-mobile';
+
+const navItems = [
+  { label: 'Home', path: '/' },
+  { label: 'Products', path: '/products' },
+  { label: 'Services', path: '/services' },
+  { label: 'About Us', path: '/about' },
+  { label: 'Contact', path: '/contact' },
+];
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const isMobile = useMobile();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [location]);
-
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Products', path: '/products' },
-    { name: 'Services', path: '/services' },
-    { name: 'About', path: '/about' },
-    { name: 'Contact', path: '/contact' },
-  ];
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const isActive = (path: string) => {
-    return location.pathname === path;
+    if (path === '/' && location.pathname === '/') {
+      return true;
+    }
+    return path !== '/' && location.pathname.startsWith(path);
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'}`}>
-      <div className="scale-container flex justify-between items-center">
+    <header className="fixed w-full bg-white shadow-md z-50">
+      <nav className="scale-container flex items-center justify-between py-2">
         <Link to="/" className="flex items-center">
           <img 
             src="/lovable-uploads/dcc1d0ed-5a7f-435e-82de-efb15657ee19.png" 
             alt="Unirise Logo" 
-            className="h-20 w-auto object-contain"
+            className="h-24 w-auto object-contain"
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
+        {/* Desktop navigation */}
+        <div className="hidden md:flex items-center space-x-6">
+          {navItems.map((item) => (
             <Link
-              key={link.name}
-              to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-unirise-red ${
-                isActive(link.path) ? 'text-unirise-red' : 'text-gray-800'
+              key={item.label}
+              to={item.path}
+              className={`text-gray-700 hover:text-unirise-red font-semibold transition duration-200 px-3 py-2 rounded-md ${
+                isActive(item.path) ? 'text-unirise-red' : ''
               }`}
             >
-              {link.name}
+              {item.label}
             </Link>
           ))}
-          <Button asChild className="bg-unirise-red hover:bg-[#E01021]/90">
-            <Link to="/contact">Contact Us</Link>
+          <Button asChild variant="outline">
+            <Link to="/contact">Get a Quote</Link>
           </Button>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden flex items-center"
-          aria-label="Toggle Menu"
-        >
-          <svg
-            className="w-6 h-6 text-gray-800"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+        {isMobile && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleMenu}
+            className="md:hidden text-unirise-red hover:bg-red-50"
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? (
-              <path d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-      </div>
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </Button>
+        )}
 
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0 animate-fade-in">
-          <div className="py-4 scale-container flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`px-4 py-2 text-sm font-medium hover:bg-gray-100 rounded ${
-                  isActive(link.path) ? 'text-unirise-red bg-gray-100' : 'text-gray-800'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
-            <div className="px-4 pt-2">
-              <Button asChild className="w-full bg-unirise-red hover:bg-[#E01021]/90">
-                <Link to="/contact">Contact Us</Link>
-              </Button>
+        {/* Mobile Menu */}
+        {isMobile && (
+          <div
+            className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out ${
+              isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            } md:hidden z-50`}
+          >
+            <div className="p-4">
+              <div className="flex justify-end">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleMenu}
+                  className="text-gray-600 hover:bg-gray-100"
+                  aria-label="Close menu"
+                >
+                  <X size={24} />
+                </Button>
+              </div>
+              <nav className="flex flex-col space-y-4 mt-6">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    to={item.path}
+                    className={`block text-gray-700 hover:text-unirise-red font-semibold transition duration-200 px-4 py-2 rounded-md ${
+                      isActive(item.path) ? 'text-unirise-red' : ''
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                <Button
+                  asChild
+                  variant="outline"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <Link to="/contact">Get a Quote</Link>
+                </Button>
+              </nav>
             </div>
           </div>
-        </div>
-      )}
-    </nav>
+        )}
+      </nav>
+    </header>
   );
 };
 
