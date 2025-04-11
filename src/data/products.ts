@@ -1,4 +1,3 @@
-
 import { getProductCategoryInfo } from './productCategories';
 
 export interface Product {
@@ -77,7 +76,35 @@ const generateProducts = (): Product[] => {
     'Double Ended Shear Load Cell',
     'Industrial Weight Box',
     'Digital Load Cell',
-    'High Capacity Compression Load Cell'
+    'High Capacity Compression Load Cell',
+    
+    'Roller Platform Weighing Scale',
+    'MS Heavy Duty Platform Weighing Scale',
+    'Flame Proof Platform Scales (304 Stainless Steel) Price',
+    
+    'Digital Industrial Flameproof Floor Weighing Machine Price',
+    'Floor Weighing Scales with inbuilt thermal Printer Price',
+    'Low Profile Weighing Scale with two side ramps',
+    
+    'Stainless Steel Table Top Weighing Scale',
+    'Table Top Weighing Scale',
+    'Table Top Weighing Machine Price',
+    'Counter Scale',
+    'Retail Table Top Weighing Scale',
+    'Abs Waterproof Body Table Top Price',
+    'Waterproof Stainless-Steel Weight Machine Price',
+    
+    'Digital Crane Scale',
+    'Thermal Protection Crane Scale', 
+    'Heavy Duty Wireless Hanging Scale',
+    'Heavy Duty Hanging Crane Scale With Heat Proof',
+    'Wireless Digital Crane Scale',
+    
+    'Heavy Duty Electronic Platform Weighing Scale with thermal Printer',
+    'Fully Stainless Steel Floor Weighing Scales',
+    'Weighing Scale With Label Printer',
+    'Heavy Duty Platform Weighing Scale',
+    'Floor Weighing Scale with Ramp'
   ];
   
   productNames.forEach(name => {
