@@ -21,9 +21,16 @@ const ProductView = () => {
     }
   }, [product, navigate]);
   
-  // Find related products (same category)
+  // Find related products (same subtype or category)
   const relatedProducts = products
-    .filter(p => p.category === product?.category && p.id !== product?.id)
+    .filter(p => {
+      // First try to find products with the same subtype
+      if (p.subtype === product?.subtype && p.id !== product?.id) {
+        return true;
+      }
+      // If not enough from the same subtype, include products from the same category
+      return p.type === product?.type && p.id !== product?.id;
+    })
     .slice(0, 4);
 
   if (!product) {

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import ProductCard from '@/components/ui/ProductCard';
 import { Product } from '@/data/products';
 import { Button } from '@/components/ui/button';
+import { productCategories } from '@/data/productCategories';
 
 interface ProductGridProps {
   products: Product[];
@@ -11,32 +12,29 @@ interface ProductGridProps {
 
 const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) => {
   const [category, setCategory] = useState(initialCategory);
+  const [subtype, setSubtype] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('featured');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(8);
 
-  const categories = [
-    { id: 'all', name: 'All Categories' },
-    { id: 'industrial', name: 'Industrial' },
-    { id: 'commercial', name: 'Commercial' },
-    { id: 'laboratory', name: 'Laboratory' },
-    { id: 'kitchen', name: 'Kitchen' },
-    { id: 'personal', name: 'Personal' },
-  ];
-
-  const sortOptions = [
-    { id: 'featured', name: 'Featured' },
-    { id: 'price-low', name: 'Price: Low to High' },
-    { id: 'price-high', name: 'Price: High to Low' },
-    { id: 'name-asc', name: 'Name: A to Z' },
-    { id: 'name-desc', name: 'Name: Z to A' },
-  ];
+  // Get active category from productCategories
+  const activeCategory = productCategories.find(cat => cat.id === category);
 
   useEffect(() => {
-    // Filter by category
-    let result = products;
+    // Reset subtype when category changes
     if (category !== 'all') {
-      result = products.filter(product => product.category === category);
+      setSubtype(null);
+    }
+    
+    // Filter by category and subtype
+    let result = products;
+    
+    if (category !== 'all') {
+      result = products.filter(product => product.type === category);
+      
+      if (subtype) {
+        result = result.filter(product => product.subtype === subtype);
+      }
     }
     
     // Sort products
@@ -73,7 +71,7 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
     }
     
     setFilteredProducts(result);
-  }, [category, sortBy, products]);
+  }, [category, subtype, sortBy, products]);
 
   const loadMore = () => {
     setVisibleProducts(prev => prev + 8);
@@ -83,20 +81,64 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
     <div>
       <div className="mb-8 bg-white p-4 rounded-lg shadow-sm">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center space-y-4 md:space-y-0">
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
+          <div className="flex flex-col space-y-4">
+            {/* Main categories */}
+            <div className="flex flex-wrap gap-2">
               <button
-                key={cat.id}
-                onClick={() => setCategory(cat.id)}
+                onClick={() => setCategory('all')}
                 className={`px-4 py-2 text-sm rounded-full transition-colors ${
-                  category === cat.id
+                  category === 'all'
                     ? 'bg-scale-navy text-white'
                     : 'bg-gray-100 text-scale-gray hover:bg-gray-200'
                 }`}
               >
-                {cat.name}
+                All Categories
               </button>
-            ))}
+              
+              {productCategories.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setCategory(cat.id)}
+                  className={`px-4 py-2 text-sm rounded-full transition-colors ${
+                    category === cat.id
+                      ? 'bg-scale-navy text-white'
+                      : 'bg-gray-100 text-scale-gray hover:bg-gray-200'
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+            
+            {/* Subtypes if a category is selected */}
+            {activeCategory && (
+              <div className="flex flex-wrap gap-2">
+                <button
+                  onClick={() => setSubtype(null)}
+                  className={`px-4 py-2 text-sm rounded-full transition-colors ${
+                    subtype === null
+                      ? 'bg-scale-navy text-white'
+                      : 'bg-gray-100 text-scale-gray hover:bg-gray-200'
+                  }`}
+                >
+                  All {activeCategory.name} Types
+                </button>
+                
+                {activeCategory.subtypes.map((st) => (
+                  <button
+                    key={st.id}
+                    onClick={() => setSubtype(st.id)}
+                    className={`px-4 py-2 text-sm rounded-full transition-colors ${
+                      subtype === st.id
+                        ? 'bg-scale-navy text-white'
+                        : 'bg-gray-100 text-scale-gray hover:bg-gray-200'
+                    }`}
+                  >
+                    {st.name}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
           
           <div className="flex items-center">
@@ -107,11 +149,11 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
               onChange={(e) => setSortBy(e.target.value)}
               className="bg-gray-100 border-none rounded-md text-scale-navy focus:ring-scale-teal py-2 px-3 text-sm"
             >
-              {sortOptions.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.name}
-                </option>
-              ))}
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="name-asc">Name: A to Z</option>
+              <option value="name-desc">Name: Z to A</option>
             </select>
           </div>
         </div>

@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, featured = false }: ProductCardProps) => {
-  const { id, name, category, price, discountedPrice, rating, image, isFeatured, isNewArrival } = product;
+  const { id, name, type, subtype, price, discountedPrice, rating, image, isFeatured, isNewArrival } = product;
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -77,9 +77,14 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
       <div className="p-5">
         <Link to={`/product/${id}`}>
           <div className="mb-2">
-            <span className="text-xs font-medium uppercase text-gray-600">
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </span>
+            <div className="flex flex-col">
+              <span className="text-xs font-medium uppercase text-gray-600">
+                {type === 'machine' ? 'Machine' : 'Spare Part'}
+              </span>
+              <span className="text-xs font-medium text-scale-gray mb-1">
+                {subtype.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+              </span>
+            </div>
             <h3 className="text-lg font-bold text-gray-800 group-hover:text-unirise-red transition-colors">
               {name}
             </h3>

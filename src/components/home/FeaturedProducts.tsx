@@ -4,23 +4,18 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ui/ProductCard';
 import products from '@/data/products';
+import { productCategories } from '@/data/productCategories';
 
 const FeaturedProducts = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   
-  const categories = [
-    { id: 'all', name: 'All' },
-    { id: 'industrial', name: 'Industrial' },
-    { id: 'commercial', name: 'Commercial' },
-    { id: 'laboratory', name: 'Laboratory' },
-    { id: 'kitchen', name: 'Kitchen' },
-    { id: 'personal', name: 'Personal' },
-  ];
-  
   const featuredProducts = products.filter(product => product.isFeatured || product.isNewArrival);
   const filteredProducts = activeCategory === 'all' 
     ? featuredProducts
-    : featuredProducts.filter(product => product.category === activeCategory);
+    : featuredProducts.filter(product => 
+        activeCategory === product.type || 
+        activeCategory === product.subtype
+      );
 
   return (
     <section className="py-16 bg-gray-50">
@@ -34,7 +29,19 @@ const FeaturedProducts = () => {
         
         <div className="flex justify-center mb-8 overflow-x-auto pb-2">
           <div className="inline-flex space-x-2">
-            {categories.map((category) => (
+            <button
+              onClick={() => setActiveCategory('all')}
+              className={`px-4 py-2 rounded-full transition-colors ${
+                activeCategory === 'all'
+                  ? 'bg-scale-navy text-white'
+                  : 'bg-white text-scale-navy hover:bg-scale-light'
+              }`}
+            >
+              All
+            </button>
+            
+            {/* Main categories */}
+            {productCategories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}

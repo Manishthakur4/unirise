@@ -99,6 +99,17 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>
           </li>
+          <li className="flex items-center">
+            <Link 
+              to={`/products?category=${product.type}`} 
+              className="text-gray-600 hover:text-unirise-red"
+            >
+              {product.type === 'machine' ? 'Machine' : 'Spare Part'}
+            </Link>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mx-2 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </li>
           <li className="flex items-center text-unirise-red font-medium">
             {product.name}
           </li>
@@ -133,12 +144,15 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
         {/* Product Info */}
         <div className="space-y-5">
           <div>
-            <div className="flex items-center mb-2">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
               <span className="uppercase text-xs font-medium text-unirise-red bg-unirise-red/10 px-2 py-1 rounded">
-                {product.category}
+                {product.type === 'machine' ? 'Machine' : 'Spare Part'}
+              </span>
+              <span className="uppercase text-xs font-medium text-scale-gray bg-gray-100 px-2 py-1 rounded">
+                {product.subtype.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
               </span>
               {product.stock < 10 && (
-                <span className="uppercase text-xs font-medium text-unirise-accent bg-unirise-accent/10 px-2 py-1 rounded ml-2">
+                <span className="uppercase text-xs font-medium text-unirise-accent bg-unirise-accent/10 px-2 py-1 rounded">
                   Limited Availability
                 </span>
               )}
@@ -149,7 +163,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               {renderStars(product.rating)}
               <span className="ml-2 text-gray-600">({product.rating.toFixed(1)})</span>
               <span className="mx-2 text-gray-300">|</span>
-              <span className="text-gray-600">Model: {product.specifications.model || 'Standard'}</span>
+              <span className="text-gray-600">Model: {product.specifications.Model || 'Standard'}</span>
             </div>
             
             <div className="mt-4">
