@@ -1,8 +1,21 @@
 
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import products from '@/data/products';
 
 const Hero = () => {
+  // Get featured products for the carousel
+  const featuredProducts = products
+    .filter(product => product.isFeatured)
+    .slice(0, 5); // Limit to 5 featured products for the carousel
+
   return (
     <div className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-white to-gray-100">
       <div className="scale-container">
@@ -37,16 +50,41 @@ const Hero = () => {
           </div>
           <div className="relative animate-scale-in lg:pl-10">
             <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-              <div className="relative pb-[56.25%]">
-                <img 
-                  src="/placeholder.svg" 
-                  alt="Digital scale for precision weighing" 
-                  className="absolute inset-0 w-full h-full object-cover"
-                />
-              </div>
-              <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
-                Featured
-              </div>
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {featuredProducts.length > 0 ? (
+                    featuredProducts.map((product) => (
+                      <CarouselItem key={product.id} className="relative">
+                        <div className="relative pb-[56.25%]">
+                          <img 
+                            src={product.image} 
+                            alt={product.name} 
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
+                            Featured
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))
+                  ) : (
+                    <CarouselItem>
+                      <div className="relative pb-[56.25%]">
+                        <img 
+                          src="/placeholder.svg" 
+                          alt="Digital scale for precision weighing" 
+                          className="absolute inset-0 w-full h-full object-cover"
+                        />
+                        <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
+                          Featured
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  )}
+                </CarouselContent>
+                <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white" />
+                <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/70 hover:bg-white" />
+              </Carousel>
             </div>
             <div className="absolute -bottom-6 -right-6 bg-[#FF5B64] text-white p-4 rounded-lg shadow-lg">
               <p className="font-bold">Contact Us</p>
