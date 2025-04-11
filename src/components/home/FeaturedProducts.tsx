@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import ProductCard from '@/components/ui/ProductCard';
 import products from '@/data/products';
@@ -8,6 +8,7 @@ import { productCategories } from '@/data/productCategories';
 
 const FeaturedProducts = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const navigate = useNavigate();
   
   const featuredProducts = products.filter(product => product.isFeatured || product.isNewArrival);
   const filteredProducts = activeCategory === 'all' 
@@ -16,6 +17,19 @@ const FeaturedProducts = () => {
         activeCategory === product.type || 
         activeCategory === product.subtype
       );
+
+  const handleCategoryClick = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    
+    if (categoryId !== 'all') {
+      // Get the active category
+      const category = productCategories.find(c => c.id === categoryId);
+      if (category) {
+        // If it's a main category, navigate to its products page
+        navigate(`/products?category=${categoryId}`);
+      }
+    }
+  };
 
   return (
     <section className="py-16 bg-gray-50">
@@ -30,7 +44,7 @@ const FeaturedProducts = () => {
         <div className="flex justify-center mb-8 overflow-x-auto pb-2">
           <div className="inline-flex space-x-2">
             <button
-              onClick={() => setActiveCategory('all')}
+              onClick={() => handleCategoryClick('all')}
               className={`px-4 py-2 rounded-full transition-colors ${
                 activeCategory === 'all'
                   ? 'bg-scale-navy text-white'
@@ -44,7 +58,7 @@ const FeaturedProducts = () => {
             {productCategories.map((category) => (
               <button
                 key={category.id}
-                onClick={() => setActiveCategory(category.id)}
+                onClick={() => handleCategoryClick(category.id)}
                 className={`px-4 py-2 rounded-full transition-colors ${
                   activeCategory === category.id
                     ? 'bg-scale-navy text-white'
@@ -58,7 +72,7 @@ const FeaturedProducts = () => {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
+          {filteredProducts.slice(0, 8).map((product) => (
             <ProductCard key={product.id} product={product} featured={product.isFeatured} />
           ))}
         </div>

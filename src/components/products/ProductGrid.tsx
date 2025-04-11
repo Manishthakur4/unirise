@@ -4,6 +4,7 @@ import ProductCard from '@/components/ui/ProductCard';
 import { Product } from '@/data/products';
 import { Button } from '@/components/ui/button';
 import { productCategories } from '@/data/productCategories';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 interface ProductGridProps {
   products: Product[];
@@ -11,8 +12,12 @@ interface ProductGridProps {
 }
 
 const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) => {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const subtypeParam = searchParams.get('subtype');
+  
   const [category, setCategory] = useState(initialCategory);
-  const [subtype, setSubtype] = useState<string | null>(null);
+  const [subtype, setSubtype] = useState<string | null>(subtypeParam);
   const [sortBy, setSortBy] = useState('featured');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [visibleProducts, setVisibleProducts] = useState<number>(8);
@@ -21,9 +26,13 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
   const activeCategory = productCategories.find(cat => cat.id === category);
 
   useEffect(() => {
-    // Reset subtype when category changes
-    if (category !== 'all') {
+    // Reset subtype when category changes (unless coming from URL params)
+    if (category !== initialCategory && category !== 'all') {
       setSubtype(null);
+      // Update URL when category changes
+      navigate(`/products?category=${category}`);
+    } else if (category === 'all') {
+      navigate('/products');
     }
     
     // Filter by category and subtype
@@ -71,7 +80,13 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
     }
     
     setFilteredProducts(result);
-  }, [category, subtype, sortBy, products]);
+  }, [category, subtype, sortBy, products, navigate, initialCategory]);
+
+  const handleSubtypeClick = (subtypeId: string) => {
+    setSubtype(subtypeId);
+    // Update URL when subtype changes
+    navigate(`/products?category=${category}&subtype=${subtypeId}`);
+  };
 
   const loadMore = () => {
     setVisibleProducts(prev => prev + 8);
@@ -114,7 +129,10 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
             {activeCategory && (
               <div className="flex flex-wrap gap-2">
                 <button
-                  onClick={() => setSubtype(null)}
+                  onClick={() => {
+                    setSubtype(null);
+                    navigate(`/products?category=${category}`);
+                  }}
                   className={`px-4 py-2 text-sm rounded-full transition-colors ${
                     subtype === null
                       ? 'bg-scale-navy text-white'
@@ -127,7 +145,7 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
                 {activeCategory.subtypes.map((st) => (
                   <button
                     key={st.id}
-                    onClick={() => setSubtype(st.id)}
+                    onClick={() => handleSubtypeClick(st.id)}
                     className={`px-4 py-2 text-sm rounded-full transition-colors ${
                       subtype === st.id
                         ? 'bg-scale-navy text-white'
@@ -150,8 +168,6 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
               className="bg-gray-100 border-none rounded-md text-scale-navy focus:ring-scale-teal py-2 px-3 text-sm"
             >
               <option value="featured">Featured</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
               <option value="name-asc">Name: A to Z</option>
               <option value="name-desc">Name: Z to A</option>
             </select>

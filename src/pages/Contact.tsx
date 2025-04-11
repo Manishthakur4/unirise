@@ -1,10 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import { Button } from '@/components/ui/button';
 import { toast } from '@/components/ui/use-toast';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [searchParams] = useSearchParams();
@@ -68,17 +68,41 @@ const Contact = () => {
     });
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Format the message to include service interests
+      const serviceInterestsText = formData.serviceInterest.length > 0 
+        ? `\n\nServices Interested In: ${formData.serviceInterest.join(', ')}`
+        : '';
+        
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        to_name: 'Unirise Sales Team',
+        from_email: formData.email,
+        to_email: 'mthakur12245@gmail.com',
+        reply_to: formData.email,
+        subject: formData.subject,
+        message: `${formData.message}${serviceInterestsText}`,
+        phone: formData.phone,
+        company: formData.company
+      };
+
+      // Use the EmailJS serviceID, templateID, and userID
+      await emailjs.send(
+        'service_contactform', // Replace with your actual service ID
+        'template_contact', // Replace with your actual template ID
+        templateParams,
+        'YOUR_USER_ID' // Replace with your actual User ID
+      );
+
       toast({
         title: "Message Sent Successfully",
         description: "Thank you for contacting Unirise. Our team will get back to you shortly.",
       });
-      setIsSubmitting(false);
+
       setFormData({
         firstName: '',
         lastName: '',
@@ -89,7 +113,16 @@ const Contact = () => {
         message: '',
         serviceInterest: []
       });
-    }, 1500);
+    } catch (error) {
+      console.error('Email sending failed:', error);
+      toast({
+        title: "Message Sending Failed",
+        description: "There was an issue sending your message. Please try again later or contact us directly.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -133,8 +166,8 @@ const Contact = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Email Us</h3>
                 <p className="text-gray-600 mb-4">Send us an email and we'll respond as soon as possible</p>
-                <a href="mailto:info@unirise.com" className="text-unirise-red hover:underline font-medium">
-                  info@unirise.com
+                <a href="mailto:mthakur12245@gmail.com" className="text-unirise-red hover:underline font-medium">
+                  mthakur12245@gmail.com
                 </a>
               </div>
               
@@ -360,7 +393,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-medium text-gray-800 mb-1">Contact</h4>
                     <p className="text-gray-600">Phone: (555) 123-4567</p>
-                    <p className="text-gray-600">Email: info@unirise.com</p>
+                    <p className="text-gray-600">Email: mthakur12245@gmail.com</p>
                     <p className="text-gray-600">Fax: (555) 123-4568</p>
                   </div>
                 </div>

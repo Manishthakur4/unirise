@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, featured = false }: ProductCardProps) => {
-  const { id, name, type, subtype, price, discountedPrice, rating, image, isFeatured, isNewArrival } = product;
+  const { id, name, type, subtype, rating, image, isFeatured, isNewArrival } = product;
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -90,23 +90,9 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
             </h3>
           </div>
           
-          <div className="flex items-center mb-3">
+          <div className="flex items-center mb-4">
             {renderStars(rating)}
             <span className="ml-2 text-gray-600 text-sm">({rating.toFixed(1)})</span>
-          </div>
-          
-          <div className="flex items-center mb-4">
-            {discountedPrice ? (
-              <>
-                <span className="text-xl font-bold text-gray-800">${discountedPrice.toFixed(2)}</span>
-                <span className="ml-2 text-gray-500 line-through">${price.toFixed(2)}</span>
-                <span className="ml-2 text-sm text-white bg-unirise-accent px-2 py-0.5 rounded-md">
-                  {Math.round(((price - discountedPrice) / price) * 100)}% OFF
-                </span>
-              </>
-            ) : (
-              <span className="text-xl font-bold text-gray-800">${price.toFixed(2)}</span>
-            )}
           </div>
         </Link>
         
@@ -115,7 +101,7 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
             <Link to={`/product/${id}`}>View Details</Link>
           </Button>
           <Button asChild className="bg-unirise-light hover:bg-unirise-light/90">
-            <Link to="/contact" className="flex items-center">
+            <Link to={`/contact?product=${id}&name=${encodeURIComponent(name)}&quote=true`} className="flex items-center">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
               </svg>
