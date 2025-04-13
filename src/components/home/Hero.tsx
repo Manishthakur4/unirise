@@ -54,16 +54,12 @@ const Hero = () => {
                 <CarouselContent>
                   {featuredProducts.length > 0 ? (
                     featuredProducts.map((product) => {
-                      // Get the appropriate image to display
-                      let displayImage = product.image;
-                      let imageAlt = product.imageAlt;
-                      
                       return (
                         <CarouselItem key={product.id} className="relative">
                           <div className="relative pb-[56.25%]">
                             <img 
-                              src={displayImage} 
-                              alt={imageAlt} 
+                              src={product.image} 
+                              alt={product.imageAlt} 
                               className="absolute inset-0 w-full h-full object-cover"
                             />
                             <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
