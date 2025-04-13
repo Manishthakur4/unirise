@@ -11,10 +11,10 @@ interface ProductCardProps {
 const ProductCard = ({ product, featured = false }: ProductCardProps) => {
   const { id, name, type, subtype, rating, image, imageAlt, isFeatured, isNewArrival } = product;
 
-  // Get the main image path from product specifications (if available)
+  // Get the main image path for the product
   const getProductImagePath = () => {
-    // For now, we're using placeholder images, but in a real app you'd use the actual path
-    return image; // Default to the placeholder image
+    // Return the image defined in the product
+    return image;
   };
 
   const renderStars = (rating: number) => {

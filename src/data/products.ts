@@ -19,6 +19,7 @@ export interface Product {
   isFeatured?: boolean;
   isNewArrival?: boolean;
   stock: number;
+  images?: string[]; // Array of additional images
 }
 
 // Generate products based on the product categories
@@ -140,7 +141,7 @@ const generateProducts = (): Product[] => {
     };
   };
   
-  productNames.forEach(name => {
+  productNames.forEach((name, index) => {
     const info = getProductCategoryInfo(name);
     if (info) {
       // Generate random price between 100 and 10000
@@ -186,8 +187,20 @@ const generateProducts = (): Product[] => {
       // Get image info with structured paths
       const imageInfo = getProductImageInfo(name, info.categoryId, info.subtypeId, id);
       
-      // For now, use placeholder.svg since we don't have actual images
-      const actualImagePath = "/placeholder.svg";
+      // Set actual image path based on index
+      let actualImagePath = "/placeholder.svg";
+      let additionalImages: string[] = [];
+      
+      // Only for the first product, use the uploaded images
+      if (index === 0) {
+        actualImagePath = "/lovable-uploads/8941770d-1914-45fc-b2da-b9459a89f014.png";
+        additionalImages = [
+          "/lovable-uploads/efd16d19-89a3-45c3-8739-ccc1d0e036b2.png",
+          "/lovable-uploads/d0c50158-c003-4b19-ae1f-ad31a2d617c7.png",
+          "/lovable-uploads/353335d0-7595-4490-8276-f0fb962a619a.png",
+          "/lovable-uploads/49fffbe9-07c1-4638-a0dd-970073f7fbaa.png"
+        ];
+      }
       
       // Add product to array
       products.push({
@@ -198,7 +211,7 @@ const generateProducts = (): Product[] => {
         price,
         discountedPrice,
         rating,
-        image: actualImagePath, // Using placeholder for now, but storing the structured path in specifications
+        image: actualImagePath, // Using uploaded image for first product, placeholder for others
         imageAlt: imageInfo.altText,
         description,
         features,
@@ -209,7 +222,8 @@ const generateProducts = (): Product[] => {
         },
         isFeatured,
         isNewArrival,
-        stock
+        stock,
+        images: index === 0 ? additionalImages : undefined // Add additional images for the first product
       });
       
       id++;

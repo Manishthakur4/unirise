@@ -54,26 +54,25 @@ const Hero = () => {
                 <CarouselContent>
                   {featuredProducts.length > 0 ? (
                     featuredProducts.map((product) => {
-                      // Get the image path reference from specifications if available
-                      const imagePath = product.image; // For now, using placeholder image
+                      // Get the appropriate image to display
+                      let displayImage = product.image;
+                      let imageAlt = product.imageAlt;
                       
                       return (
                         <CarouselItem key={product.id} className="relative">
                           <div className="relative pb-[56.25%]">
                             <img 
-                              src={imagePath} 
-                              alt={product.imageAlt} 
+                              src={displayImage} 
+                              alt={imageAlt} 
                               className="absolute inset-0 w-full h-full object-cover"
                             />
                             <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
                               Featured
                             </div>
-                            {/* Add a small note about the image path for development reference */}
-                            {product.specifications?.ImagePath && (
-                              <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs p-1">
-                                Path reference: {product.specifications.ImagePath.split('/').pop()}
-                              </div>
-                            )}
+                            {/* Add product name at the bottom */}
+                            <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white py-2 px-4">
+                              <p className="font-medium">{product.name}</p>
+                            </div>
                           </div>
                         </CarouselItem>
                       );

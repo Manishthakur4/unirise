@@ -31,21 +31,14 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     navigate(`/contact?product=${product.id}&name=${encodeURIComponent(product.name)}&quote=true`);
   };
 
-  // Get the image paths from product specifications
+  // Get the image paths for product
   const getProductImages = () => {
-    // For now, we're using placeholder images, but the structure for real images is stored in specifications
-    const imagePath = product.specifications["ImagePath"] || "";
-    let altImages: string[] = [];
-    
-    try {
-      if (product.specifications["AltImages"]) {
-        altImages = JSON.parse(product.specifications["AltImages"]);
-      }
-    } catch (e) {
-      console.error("Error parsing alternate images:", e);
+    // If product has specific images array, use those
+    if (product.images && product.images.length > 0) {
+      return [product.image, ...product.images];
     }
     
-    // For demonstration, we'll use placeholder.svg but in a real app, you would use the actual paths
+    // Otherwise use placeholder images
     return [product.image, product.image, product.image, product.image];
   };
 
