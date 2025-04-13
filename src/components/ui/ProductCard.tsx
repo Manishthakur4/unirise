@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Product } from '@/data/products';
@@ -10,12 +9,6 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, featured = false }: ProductCardProps) => {
   const { id, name, type, subtype, rating, image, imageAlt, isFeatured, isNewArrival } = product;
-
-  // Get the main image path for the product
-  const getProductImagePath = () => {
-    // Return the image defined in the product
-    return image;
-  };
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -62,7 +55,7 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
         <Link to={`/product/${id}`}>
           <div className="overflow-hidden">
             <img 
-              src={getProductImagePath()} 
+              src={image} 
               alt={imageAlt} 
               className="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-105"
             />

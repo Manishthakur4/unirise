@@ -110,46 +110,6 @@ const generateProducts = (): Product[] => {
     'Floor Weighing Scale with Ramp'
   ];
   
-  // Generate image paths based on product type and subtype
-  const getProductImageInfo = (name: string, type: string, subtype: string, productId: number) => {
-    // Clean the subtype and name to be used in file path - replace spaces with hyphens and remove special characters
-    const cleanSubtype = subtype.replace(/-/g, '_').replace(/\s+/g, '-').toLowerCase();
-    const cleanName = name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
-    
-    // Create directory structure based on product type and subtype
-    const typeFolder = type === 'machine' ? 'weighing-machines' : 'spare-parts';
-    const subtypeFolder = cleanSubtype;
-    
-    // Generate main image path
-    const mainImagePath = `/lovable-uploads/${typeFolder}/${subtypeFolder}/${cleanName}-${productId}`;
-    
-    // Generate alternate images paths (for the product gallery)
-    const altImages = [
-      `${mainImagePath}-1`,
-      `${mainImagePath}-2`,
-      `${mainImagePath}-3`,
-      `${mainImagePath}-4`
-    ];
-    
-    // Generate meaningful alt text based on product name and type
-    const altText = `${name} - ${type === 'machine' ? 'Weighing Machine' : 'Spare Part'} (${subtype.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')})`;
-    
-    return { 
-      mainImagePath, 
-      altImages,
-      altText 
-    };
-  };
-  
-  // Use the same set of images for all products
-  const mainImage = "/lovable-uploads/8941770d-1914-45fc-b2da-b9459a89f014.png";
-  const additionalImageSet = [
-    "/lovable-uploads/efd16d19-89a3-45c3-8739-ccc1d0e036b2.png",
-    "/lovable-uploads/d0c50158-c003-4b19-ae1f-ad31a2d617c7.png",
-    "/lovable-uploads/353335d0-7595-4490-8276-f0fb962a619a.png",
-    "/lovable-uploads/49fffbe9-07c1-4638-a0dd-970073f7fbaa.png"
-  ];
-  
   productNames.forEach((name, index) => {
     const info = getProductCategoryInfo(name);
     if (info) {
@@ -193,11 +153,31 @@ const generateProducts = (): Product[] => {
         specifications["Maximum Capacity"] = capacities[Math.floor(Math.random() * capacities.length)];
       }
       
-      // Get image info with structured paths
-      const imageInfo = getProductImageInfo(name, info.categoryId, info.subtypeId, id);
+      // Clean the subtype and name to be used in file path
+      const cleanSubtype = info.subtypeId.replace(/-/g, '_').replace(/\s+/g, '-').toLowerCase();
+      const cleanName = name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
       
-      // Use the same images for all products
-      const actualImagePath = mainImage;
+      // Create directory structure based on product type and subtype
+      const typeFolder = info.categoryId === 'machine' ? 'weighing-machines' : 'spare-parts';
+      const subtypeFolder = cleanSubtype;
+      
+      // Generate image paths using structured naming convention
+      const imagePath = `/lovable-uploads/products/${typeFolder}/${subtypeFolder}/${cleanName}-${id}`;
+      const mainImage = `/lovable-uploads/8941770d-1914-45fc-b2da-b9459a89f014.png`; // Placeholder until actual images are uploaded
+      
+      // Generate additional images paths (for the product gallery)
+      const additionalImages = [
+        `/lovable-uploads/efd16d19-89a3-45c3-8739-ccc1d0e036b2.png`,
+        `/lovable-uploads/d0c50158-c003-4b19-ae1f-ad31a2d617c7.png`,
+        `/lovable-uploads/353335d0-7595-4490-8276-f0fb962a619a.png`,
+        `/lovable-uploads/49fffbe9-07c1-4638-a0dd-970073f7fbaa.png`
+      ];
+      
+      // Generate meaningful alt text based on product name and type
+      const altText = `${name} - ${info.categoryId === 'machine' ? 'Weighing Machine' : 'Spare Part'} (${info.subtypeName})`;
+      
+      // Store the structured path information in specifications for reference
+      specifications["ImageBasePath"] = imagePath;
       
       // Add product to array
       products.push({
@@ -208,19 +188,15 @@ const generateProducts = (): Product[] => {
         price,
         discountedPrice,
         rating,
-        image: actualImagePath, // Using the same main image for all products
-        imageAlt: imageInfo.altText,
+        image: mainImage, // Using placeholder image that will be easy to replace
+        imageAlt: altText,
         description,
         features,
-        specifications: {
-          ...specifications,
-          "ImagePath": imageInfo.mainImagePath, // Store the structured path for reference
-          "AltImages": JSON.stringify(imageInfo.altImages) // Store alternate image paths
-        },
+        specifications,
         isFeatured,
         isNewArrival,
         stock,
-        images: additionalImageSet // Use the same additional images for all products
+        images: additionalImages // Use additional images for all products
       });
       
       id++;

@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -260,10 +261,10 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           {activeTab === 'description' && (
             <div className="prose max-w-none">
               <p className="text-gray-600">{product.description}</p>
-              {product.specifications["ImagePath"] && (
+              {product.specifications["ImageBasePath"] && (
                 <div className="mt-4 p-3 bg-gray-50 rounded text-sm text-gray-500">
-                  <p><strong>Image Path Reference:</strong> {product.specifications["ImagePath"]}</p>
-                  <p className="text-xs mt-1">Note: This information is shown for development purposes. In production, you would upload actual images to these paths.</p>
+                  <p><strong>Image Path Reference:</strong> {product.specifications["ImageBasePath"]}</p>
+                  <p className="text-xs mt-1">Note: To update this product's images, upload your images to this path structure and they'll automatically be used.</p>
                 </div>
               )}
             </div>
