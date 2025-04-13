@@ -11,6 +11,12 @@ interface ProductCardProps {
 const ProductCard = ({ product, featured = false }: ProductCardProps) => {
   const { id, name, type, subtype, rating, image, imageAlt, isFeatured, isNewArrival } = product;
 
+  // Get the main image path from product specifications (if available)
+  const getProductImagePath = () => {
+    // For now, we're using placeholder images, but in a real app you'd use the actual path
+    return image; // Default to the placeholder image
+  };
+
   const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
@@ -56,7 +62,7 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
         <Link to={`/product/${id}`}>
           <div className="overflow-hidden">
             <img 
-              src={image} 
+              src={getProductImagePath()} 
               alt={imageAlt} 
               className="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-105"
             />

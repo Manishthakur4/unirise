@@ -31,13 +31,26 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
     navigate(`/contact?product=${product.id}&name=${encodeURIComponent(product.name)}&quote=true`);
   };
 
-  // Mock images (in a real app, these would be actual product images)
-  const productImages = [
-    product.image,
-    "/placeholder.svg",
-    "/placeholder.svg",
-    "/placeholder.svg"
-  ];
+  // Get the image paths from product specifications
+  const getProductImages = () => {
+    // For now, we're using placeholder images, but the structure for real images is stored in specifications
+    const imagePath = product.specifications["ImagePath"] || "";
+    let altImages: string[] = [];
+    
+    try {
+      if (product.specifications["AltImages"]) {
+        altImages = JSON.parse(product.specifications["AltImages"]);
+      }
+    } catch (e) {
+      console.error("Error parsing alternate images:", e);
+    }
+    
+    // For demonstration, we'll use placeholder.svg but in a real app, you would use the actual paths
+    return [product.image, product.image, product.image, product.image];
+  };
+
+  // Get product images
+  const productImages = getProductImages();
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -254,6 +267,12 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           {activeTab === 'description' && (
             <div className="prose max-w-none">
               <p className="text-gray-600">{product.description}</p>
+              {product.specifications["ImagePath"] && (
+                <div className="mt-4 p-3 bg-gray-50 rounded text-sm text-gray-500">
+                  <p><strong>Image Path Reference:</strong> {product.specifications["ImagePath"]}</p>
+                  <p className="text-xs mt-1">Note: This information is shown for development purposes. In production, you would upload actual images to these paths.</p>
+                </div>
+              )}
             </div>
           )}
           
@@ -279,16 +298,18 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               <div className="overflow-hidden border rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200">
                   <tbody className="divide-y divide-gray-200">
-                    {Object.entries(product.specifications).map(([key, value], index) => (
-                      <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                          {key}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                          {value}
-                        </td>
-                      </tr>
-                    ))}
+                    {Object.entries(product.specifications)
+                      .filter(([key]) => !key.includes("Image")) // Filter out image paths from display
+                      .map(([key, value], index) => (
+                        <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
+                            {key}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                            {value}
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

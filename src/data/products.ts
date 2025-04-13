@@ -110,20 +110,32 @@ const generateProducts = (): Product[] => {
   ];
   
   // Generate image paths based on product type and subtype
-  const getProductImageInfo = (name: string, type: string, subtype: string) => {
-    // Clean the subtype to be used in file path
-    const cleanSubtype = subtype.replace(/-/g, '_');
+  const getProductImageInfo = (name: string, type: string, subtype: string, productId: number) => {
+    // Clean the subtype and name to be used in file path - replace spaces with hyphens and remove special characters
+    const cleanSubtype = subtype.replace(/-/g, '_').replace(/\s+/g, '-').toLowerCase();
+    const cleanName = name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
     
-    // Base image path - in a real application, this would point to actual product images
-    const imageName = `${cleanSubtype}_${id}`;
-    const imagePath = `/placeholder.svg`; // Using placeholder for now
+    // Create directory structure based on product type and subtype
+    const typeFolder = type === 'machine' ? 'weighing-machines' : 'spare-parts';
+    const subtypeFolder = cleanSubtype;
+    
+    // Generate main image path
+    const mainImagePath = `/lovable-uploads/${typeFolder}/${subtypeFolder}/${cleanName}-${productId}`;
+    
+    // Generate alternate images paths (for the product gallery)
+    const altImages = [
+      `${mainImagePath}-1`,
+      `${mainImagePath}-2`,
+      `${mainImagePath}-3`,
+      `${mainImagePath}-4`
+    ];
     
     // Generate meaningful alt text based on product name and type
     const altText = `${name} - ${type === 'machine' ? 'Weighing Machine' : 'Spare Part'} (${subtype.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')})`;
     
     return { 
-      imagePath, 
-      imageName,
+      mainImagePath, 
+      altImages,
       altText 
     };
   };
@@ -171,8 +183,11 @@ const generateProducts = (): Product[] => {
         specifications["Maximum Capacity"] = capacities[Math.floor(Math.random() * capacities.length)];
       }
       
-      // Get image info
-      const imageInfo = getProductImageInfo(name, info.categoryId, info.subtypeId);
+      // Get image info with structured paths
+      const imageInfo = getProductImageInfo(name, info.categoryId, info.subtypeId, id);
+      
+      // For now, use placeholder.svg since we don't have actual images
+      const actualImagePath = "/placeholder.svg";
       
       // Add product to array
       products.push({
@@ -183,11 +198,15 @@ const generateProducts = (): Product[] => {
         price,
         discountedPrice,
         rating,
-        image: imageInfo.imagePath,
+        image: actualImagePath, // Using placeholder for now, but storing the structured path in specifications
         imageAlt: imageInfo.altText,
         description,
         features,
-        specifications,
+        specifications: {
+          ...specifications,
+          "ImagePath": imageInfo.mainImagePath, // Store the structured path for reference
+          "AltImages": JSON.stringify(imageInfo.altImages) // Store alternate image paths
+        },
         isFeatured,
         isNewArrival,
         stock

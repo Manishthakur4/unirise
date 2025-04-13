@@ -53,20 +53,31 @@ const Hero = () => {
               <Carousel className="w-full">
                 <CarouselContent>
                   {featuredProducts.length > 0 ? (
-                    featuredProducts.map((product) => (
-                      <CarouselItem key={product.id} className="relative">
-                        <div className="relative pb-[56.25%]">
-                          <img 
-                            src={product.image} 
-                            alt={product.imageAlt} 
-                            className="absolute inset-0 w-full h-full object-cover"
-                          />
-                          <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
-                            Featured
+                    featuredProducts.map((product) => {
+                      // Get the image path reference from specifications if available
+                      const imagePath = product.image; // For now, using placeholder image
+                      
+                      return (
+                        <CarouselItem key={product.id} className="relative">
+                          <div className="relative pb-[56.25%]">
+                            <img 
+                              src={imagePath} 
+                              alt={product.imageAlt} 
+                              className="absolute inset-0 w-full h-full object-cover"
+                            />
+                            <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
+                              Featured
+                            </div>
+                            {/* Add a small note about the image path for development reference */}
+                            {product.specifications?.ImagePath && (
+                              <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs p-1">
+                                Path reference: {product.specifications.ImagePath.split('/').pop()}
+                              </div>
+                            )}
                           </div>
-                        </div>
-                      </CarouselItem>
-                    ))
+                        </CarouselItem>
+                      );
+                    })
                   ) : (
                     <CarouselItem>
                       <div className="relative pb-[56.25%]">
