@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -122,7 +121,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           <div className="border rounded-lg overflow-hidden aspect-square">
             <img 
               src={selectedImage} 
-              alt={product.name} 
+              alt={product.imageAlt} 
               className="w-full h-full object-contain p-4"
             />
           </div>
@@ -135,7 +134,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                   selectedImage === image ? 'border-unirise-red ring-2 ring-unirise-red/20' : 'border-gray-200 hover:border-unirise-red/50'
                 }`}
               >
-                <img src={image} alt={`${product.name} view ${index + 1}`} className="w-full h-full object-cover aspect-square" />
+                <img 
+                  src={image} 
+                  alt={`${product.name} view ${index + 1}`} 
+                  className="w-full h-full object-cover aspect-square" 
+                />
               </button>
             ))}
           </div>

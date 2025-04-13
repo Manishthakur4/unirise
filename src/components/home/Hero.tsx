@@ -58,7 +58,7 @@ const Hero = () => {
                         <div className="relative pb-[56.25%]">
                           <img 
                             src={product.image} 
-                            alt={product.name} 
+                            alt={product.imageAlt} 
                             className="absolute inset-0 w-full h-full object-cover"
                           />
                           <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">

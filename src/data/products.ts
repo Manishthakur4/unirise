@@ -1,3 +1,4 @@
+
 import { getProductCategoryInfo } from './productCategories';
 
 export interface Product {
@@ -9,6 +10,7 @@ export interface Product {
   discountedPrice?: number;
   rating: number;
   image: string;
+  imageAlt: string; // Added explicit alt text field
   description: string;
   features: string[];
   specifications: {
@@ -107,6 +109,25 @@ const generateProducts = (): Product[] => {
     'Floor Weighing Scale with Ramp'
   ];
   
+  // Generate image paths based on product type and subtype
+  const getProductImageInfo = (name: string, type: string, subtype: string) => {
+    // Clean the subtype to be used in file path
+    const cleanSubtype = subtype.replace(/-/g, '_');
+    
+    // Base image path - in a real application, this would point to actual product images
+    const imageName = `${cleanSubtype}_${id}`;
+    const imagePath = `/placeholder.svg`; // Using placeholder for now
+    
+    // Generate meaningful alt text based on product name and type
+    const altText = `${name} - ${type === 'machine' ? 'Weighing Machine' : 'Spare Part'} (${subtype.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')})`;
+    
+    return { 
+      imagePath, 
+      imageName,
+      altText 
+    };
+  };
+  
   productNames.forEach(name => {
     const info = getProductCategoryInfo(name);
     if (info) {
@@ -150,6 +171,9 @@ const generateProducts = (): Product[] => {
         specifications["Maximum Capacity"] = capacities[Math.floor(Math.random() * capacities.length)];
       }
       
+      // Get image info
+      const imageInfo = getProductImageInfo(name, info.categoryId, info.subtypeId);
+      
       // Add product to array
       products.push({
         id,
@@ -159,7 +183,8 @@ const generateProducts = (): Product[] => {
         price,
         discountedPrice,
         rating,
-        image: "/placeholder.svg",
+        image: imageInfo.imagePath,
+        imageAlt: imageInfo.altText,
         description,
         features,
         specifications,

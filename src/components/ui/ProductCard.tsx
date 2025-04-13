@@ -9,7 +9,7 @@ interface ProductCardProps {
 }
 
 const ProductCard = ({ product, featured = false }: ProductCardProps) => {
-  const { id, name, type, subtype, rating, image, isFeatured, isNewArrival } = product;
+  const { id, name, type, subtype, rating, image, imageAlt, isFeatured, isNewArrival } = product;
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -57,7 +57,7 @@ const ProductCard = ({ product, featured = false }: ProductCardProps) => {
           <div className="overflow-hidden">
             <img 
               src={image} 
-              alt={name} 
+              alt={imageAlt} 
               className="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-105"
             />
           </div>
