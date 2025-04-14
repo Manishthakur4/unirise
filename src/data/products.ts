@@ -10,7 +10,7 @@ export interface Product {
   discountedPrice?: number;
   rating: number;
   image: string;
-  imageAlt: string; // Added explicit alt text field
+  imageAlt: string;
   description: string;
   features: string[];
   specifications: {
@@ -19,7 +19,7 @@ export interface Product {
   isFeatured?: boolean;
   isNewArrival?: boolean;
   stock: number;
-  images?: string[]; // Array of additional images
+  images?: string[];
 }
 
 // Generate products based on the product categories
@@ -153,31 +153,55 @@ const generateProducts = (): Product[] => {
         specifications["Maximum Capacity"] = capacities[Math.floor(Math.random() * capacities.length)];
       }
       
-      // Clean the subtype and name to be used in file path
-      const cleanSubtype = info.subtypeId.replace(/-/g, '_').replace(/\s+/g, '-').toLowerCase();
-      const cleanName = name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase();
-      
-      // Create directory structure based on product type and subtype
-      const typeFolder = info.categoryId === 'machine' ? 'weighing-machines' : 'spare-parts';
-      const subtypeFolder = cleanSubtype;
-      
-      // Generate image paths using structured naming convention
-      const imagePath = `/lovable-uploads/products/${typeFolder}/${subtypeFolder}/${cleanName}-${id}`;
-      const mainImage = `/lovable-uploads/8941770d-1914-45fc-b2da-b9459a89f014.png`; // Placeholder until actual images are uploaded
-      
-      // Generate additional images paths (for the product gallery)
-      const additionalImages = [
+      // Default placeholder image and additional images
+      let mainImage = `/lovable-uploads/8941770d-1914-45fc-b2da-b9459a89f014.png`;
+      let additionalImages = [
         `/lovable-uploads/efd16d19-89a3-45c3-8739-ccc1d0e036b2.png`,
         `/lovable-uploads/d0c50158-c003-4b19-ae1f-ad31a2d617c7.png`,
         `/lovable-uploads/353335d0-7595-4490-8276-f0fb962a619a.png`,
         `/lovable-uploads/49fffbe9-07c1-4638-a0dd-970073f7fbaa.png`
       ];
       
+      // Product-specific image overrides
+      // Only for the first product, use the uploaded images
+      if (index === 0) {
+        mainImage = "/lovable-uploads/8941770d-1914-45fc-b2da-b9459a89f014.png";
+        additionalImages = [
+          "/lovable-uploads/efd16d19-89a3-45c3-8739-ccc1d0e036b2.png",
+          "/lovable-uploads/d0c50158-c003-4b19-ae1f-ad31a2d617c7.png",
+          "/lovable-uploads/353335d0-7595-4490-8276-f0fb962a619a.png",
+          "/lovable-uploads/49fffbe9-07c1-4638-a0dd-970073f7fbaa.png"
+        ];
+      }
+      
+      // Only for the second product, use the uploaded images
+      if (index === 1) {
+        mainImage = "/lovable-uploads/8941770d-1914-45fc-b2da-b9459a89f014.png";
+        additionalImages = [
+          "/lovable-uploads/efd16d19-mkse-45c3-8739-ccc1d0e036b2.png",
+          "/lovable-uploads/d0c50158-mkmsl-4b19-ae1f-ad31a2d617c7.png",
+          "/lovable-uploads/353335d0-0khh-4490-8276-f0fb962a619a.png",
+          "/lovable-uploads/49fffbe9-nj89-4638-a0dd-970073f7fbaa.png"
+        ];
+      }
+      
+      // Only for the third product, use the uploaded images
+      if (index === 2) {
+        mainImage = "/lovable-uploads/8941770d-8976-45fc-b2da-b9459a89f014.png";
+        additionalImages = [
+          "/lovable-uploads/efd16d19-89a3-mkl0-8739-ccc1d0e036b2.png",
+          "/lovable-uploads/d0c50158-sdhb-4b19-ae1f-ad31a2d617c7.png",
+          "/lovable-uploads/353335d0-75fg-4490-8276-f0fb962a619a.png",
+          "/lovable-uploads/49fffbe9-ml23-4638-a0dd-970073f7fbaa.png"
+        ];
+      }
+      
       // Generate meaningful alt text based on product name and type
       const altText = `${name} - ${info.categoryId === 'machine' ? 'Weighing Machine' : 'Spare Part'} (${info.subtypeName})`;
       
-      // Store the structured path information in specifications for reference
-      specifications["ImageBasePath"] = imagePath;
+      // Add a reference to images in the description for easier identification
+      const imageInfo = `Product ID: ${id}, Main Image: ${mainImage.split('/').pop()}, Additional Images: ${additionalImages.map(img => img.split('/').pop()).join(', ')}`;
+      specifications["ImageInfo"] = imageInfo;
       
       // Add product to array
       products.push({
@@ -188,7 +212,7 @@ const generateProducts = (): Product[] => {
         price,
         discountedPrice,
         rating,
-        image: mainImage, // Using placeholder image that will be easy to replace
+        image: mainImage,
         imageAlt: altText,
         description,
         features,
@@ -196,7 +220,7 @@ const generateProducts = (): Product[] => {
         isFeatured,
         isNewArrival,
         stock,
-        images: additionalImages // Use additional images for all products
+        images: additionalImages
       });
       
       id++;
