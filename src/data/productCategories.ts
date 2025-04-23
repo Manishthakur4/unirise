@@ -1,4 +1,3 @@
-
 export interface ProductSubtype {
   id: string;
   name: string;
@@ -46,14 +45,6 @@ export const productCategories: ProductCategory[] = [
         ]
       },
       {
-        id: 'pos-system',
-        name: 'POS System',
-        products: [
-          'Retail POS System',
-          'Retail POS Software System'
-        ]
-      },
-      {
         id: 'digital-hanging-scale',
         name: 'Digital Hanging Scale',
         products: [
@@ -79,31 +70,10 @@ export const productCategories: ProductCategory[] = [
         ]
       },
       {
-        id: 'supermarket-scale',
-        name: 'Supermarket Scale',
-        products: [
-          'Restaurant POS System'
-        ]
-      },
-      {
-        id: 'electronic-weighing-scale',
-        name: 'Electronic Weighing Scale',
-        products: [
-          'Table Top Electronic Weighing Machine'
-        ]
-      },
-      {
         id: 'platform-scale',
         name: 'Platform Scale',
         products: [
           'MS Platform Weighing Scale'
-        ]
-      },
-      {
-        id: 'electronic-scale',
-        name: 'Electronic Scale',
-        products: [
-          'Laboratory Balances'
         ]
       },
       {
@@ -144,15 +114,6 @@ export const productCategories: ProductCategory[] = [
           'Precision Weighing Scale Dual Rang',
           'High Precision Balance',
           'Electronic Analytical Balances'
-        ]
-      },
-      {
-        id: 'platform-weighing-scale',
-        name: 'Platform Weighing Scale',
-        products: [
-          'Roller Platform Weighing Scale',
-          'MS Heavy Duty Platform Weighing Scale',
-          'Flame Proof Platform Scales (304 Stainless Steel) Price'
         ]
       },
       {
@@ -247,7 +208,6 @@ export const productCategories: ProductCategory[] = [
   }
 ];
 
-// Helper function to get all product names
 export const getAllProductNames = (): string[] => {
   const products: string[] = [];
   
@@ -260,7 +220,6 @@ export const getAllProductNames = (): string[] => {
   return products;
 };
 
-// Helper function to get category and subtype for a product
 export const getProductCategoryInfo = (productName: string): { 
   categoryId: string;
   categoryName: string;

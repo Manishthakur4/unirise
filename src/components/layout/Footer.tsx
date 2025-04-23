@@ -1,5 +1,5 @@
-
 import { Link } from 'react-router-dom';
+import { productCategories } from '@/data/productCategories';
 
 const Footer = () => {
   return (
@@ -34,19 +34,25 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-bold mb-4">Products</h4>
             <ul className="space-y-2">
-              <li><Link to="/products?category=industrial" className="text-gray-300 hover:text-scale-teal transition-colors">Industrial Scales</Link></li>
-              <li><Link to="/products?category=commercial" className="text-gray-300 hover:text-scale-teal transition-colors">Commercial Scales</Link></li>
-              <li><Link to="/products?category=laboratory" className="text-gray-300 hover:text-scale-teal transition-colors">Laboratory Scales</Link></li>
-              <li><Link to="/products?category=kitchen" className="text-gray-300 hover:text-scale-teal transition-colors">Kitchen Scales</Link></li>
-              <li><Link to="/products?category=personal" className="text-gray-300 hover:text-scale-teal transition-colors">Personal Scales</Link></li>
-              <li><Link to="/products" className="text-gray-300 hover:text-scale-teal transition-colors">All Products</Link></li>
+              {productCategories.map(cat => (
+                <li key={cat.id}>
+                  <Link to={`/products?category=${cat.id}`} className="text-gray-300 hover:text-scale-teal transition-colors">
+                    {cat.name}s
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link to="/products" className="text-gray-300 hover:text-scale-teal transition-colors">
+                  All Products
+                </Link>
+              </li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-bold mb-4">Services</h4>
             <ul className="space-y-2">
@@ -57,7 +63,7 @@ const Footer = () => {
               <li><Link to="/services" className="text-gray-300 hover:text-scale-teal transition-colors">Consultation & Training</Link></li>
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-bold mb-4">Contact Us</h4>
             <address className="not-italic text-gray-300 space-y-2">
@@ -68,7 +74,7 @@ const Footer = () => {
             </address>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} ScaleSavvy. All rights reserved.</p>
