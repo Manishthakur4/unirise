@@ -18,8 +18,8 @@ const Benefits = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
-      title: "Fast, Free Shipping",
-      description: "Get your scales quickly with our expedited shipping on all orders over $100, and enjoy free shipping on qualifying purchases."
+      title: "Fast, Shipping",
+      description: "Get your scales quickly with our expedited shipping on all orders over your areas, and enjoy stress free shipping on qualifying purchases."
     },
     {
       icon: (
@@ -43,19 +43,19 @@ const Benefits = () => {
 
   const testimonials = [
     {
-      quote: "ScaleSavvy has consistently delivered high-quality scales that meet our strict laboratory requirements. Their calibration service ensures our measurements remain precise year after year.",
+      quote: "Unirise has consistently delivered high-quality scales that meet our strict laboratory requirements. Their calibration service ensures our measurements remain precise year after year.",
       author: "Dr. Sarah Johnson",
       company: "PharmaTech Research",
       image: "/placeholder.svg"
     },
     {
-      quote: "We've outfitted our entire warehouse with industrial scales from ScaleSavvy. Their durability and accuracy have significantly improved our inventory management efficiency.",
+      quote: "We've outfitted our entire warehouse with industrial scales from Unirise. Their durability and accuracy have significantly improved our inventory management efficiency.",
       author: "Michael Rodriguez",
       company: "Global Distribution Co.",
       image: "/placeholder.svg"
     },
     {
-      quote: "As a small business owner, I appreciate the personalized service ScaleSavvy provides. They helped me find the perfect retail scale solution within my budget.",
+      quote: "As a small business owner, I appreciate the personalized service Unirise provides. They helped me find the perfect retail scale solution within my budget.",
       author: "Jennifer Lee",
       company: "Artisan Chocolates",
       image: "/placeholder.svg"
@@ -67,7 +67,7 @@ const Benefits = () => {
       <div className="scale-container">
         {/* Benefits Section */}
         <div className="text-center mb-12">
-          <h2 className="section-heading">Why Choose ScaleSavvy</h2>
+          <h2 className="section-heading">Why Choose Unirise</h2>
           <p className="section-subheading mx-auto">
             Trusted by thousands of businesses for quality, precision, and exceptional service
           </p>
@@ -86,7 +86,7 @@ const Benefits = () => {
         {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-10 px-6 bg-scale-navy text-white rounded-lg mb-16">
           <div className="text-center">
-            <div className="text-4xl font-bold text-scale-teal mb-2">15+</div>
+            <div className="text-4xl font-bold text-scale-teal mb-2">10+</div>
             <div className="text-sm">Years Experience</div>
           </div>
           <div className="text-center">
@@ -104,7 +104,7 @@ const Benefits = () => {
         </div>
         
         {/* Testimonials Section */}
-        <div className="mb-12">
+        {/* <div className="mb-12">
           <h2 className="section-heading text-center">What Our Customers Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
             {testimonials.map((testimonial, index) => (
@@ -123,7 +123,7 @@ const Benefits = () => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
         
         {/* CTA Section */}
         <div className="bg-gradient-to-r from-scale-navy to-scale-teal text-white rounded-lg p-10 text-center">

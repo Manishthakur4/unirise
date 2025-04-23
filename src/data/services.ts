@@ -4,6 +4,7 @@ export interface Service {
   title: string;
   description: string;
   icon: string;
+  images :string ;
   benefits: string[];
   longDescription: string;
 }
@@ -14,6 +15,7 @@ const services: Service[] = [
     title: "Scale Calibration",
     description: "Professional calibration services to ensure your weighing scales maintain peak accuracy.",
     icon: "service",
+    images : "/lovable-uploads/Calibration-of-high-precision-balance-675x380.jpg",
     benefits: [
       "NIST-traceable calibration certificates",
       "On-site service available",
@@ -27,6 +29,8 @@ const services: Service[] = [
     title: "Repair & Maintenance",
     description: "Expert repair services for all types of scales with fast turnaround times.",
     icon: "service",
+    images : "/lovable-uploads/calibration_weighing_scale_balance_mass_ISO_17025_accreditedrepair_service_maintenance.jpg",
+
     benefits: [
       "Factory-trained technicians",
       "Genuine replacement parts",
@@ -40,6 +44,8 @@ const services: Service[] = [
     title: "Custom Integration",
     description: "Seamless integration of weighing systems with your existing software and hardware.",
     icon: "service",
+    images : "/lovable-uploads/CPWplus in shipping station.jpg",
+
     benefits: [
       "Custom software development",
       "ERP/CRM/WMS integration",
@@ -48,32 +54,32 @@ const services: Service[] = [
     ],
     longDescription: "Our integration services connect your weighing systems with your business software for seamless data flow and process automation. Whether you need scales integrated with inventory management, ERP systems, or custom software, our team of software engineers and scale technicians can develop tailored solutions. We specialize in data capture, automated reporting, and system integration that eliminates manual data entry and reduces errors. Our solutions can include barcode scanning, RFID technology, cloud connectivity, and mobile access to weighing data. Each integration project begins with a thorough assessment of your requirements and existing systems."
   },
-  {
-    id: 4,
-    title: "Scale Rental",
-    description: "Short and long-term rental options for various weighing equipment needs.",
-    icon: "service",
-    benefits: [
-      "Flexible rental periods",
-      "Wide range of equipment available",
-      "Calibrated and ready to use",
-      "Delivery and setup included"
-    ],
-    longDescription: "Our scale rental service provides flexible access to high-quality weighing equipment without capital investment. Whether you need scales for a special event, seasonal production increase, or to try before you buy, we offer daily, weekly, and monthly rental options. All rental equipment is professionally maintained, calibrated, and delivered ready to use. We provide delivery, setup, and training as part of our service. Our rental inventory includes precision laboratory balances, floor scales, counting scales, crane scales, and specialized weighing equipment for virtually any application."
-  },
-  {
-    id: 5,
-    title: "Consultation & Training",
-    description: "Expert advice on scale selection and comprehensive training programs.",
-    icon: "service",
-    benefits: [
-      "Needs assessment and recommendations",
-      "Operator training programs",
-      "Regulatory compliance guidance",
-      "Process optimization"
-    ],
-    longDescription: "Our consultation services help you select the right weighing equipment for your specific needs and ensure your team knows how to operate it correctly. Our weighing experts can assess your requirements, recommend appropriate solutions, and help you navigate regulatory requirements. We offer comprehensive training programs for your staff, covering proper operation, basic maintenance, troubleshooting, and best practices. With decades of industry experience, our consultants can also help optimize your weighing processes for efficiency and accuracy. Whether you're setting up a new facility or upgrading existing equipment, our guidance ensures you make informed decisions."
-  }
+  // {
+  //   id: 4,
+  //   title: "Scale Rental",
+  //   description: "Short and long-term rental options for various weighing equipment needs.",
+  //   icon: "service",
+  //   benefits: [
+  //     "Flexible rental periods",
+  //     "Wide range of equipment available",
+  //     "Calibrated and ready to use",
+  //     "Delivery and setup included"
+  //   ],
+  //   longDescription: "Our scale rental service provides flexible access to high-quality weighing equipment without capital investment. Whether you need scales for a special event, seasonal production increase, or to try before you buy, we offer daily, weekly, and monthly rental options. All rental equipment is professionally maintained, calibrated, and delivered ready to use. We provide delivery, setup, and training as part of our service. Our rental inventory includes precision laboratory balances, floor scales, counting scales, crane scales, and specialized weighing equipment for virtually any application."
+  // },
+  // {
+  //   id: 5,
+  //   title: "Consultation & Training",
+  //   description: "Expert advice on scale selection and comprehensive training programs.",
+  //   icon: "service",
+  //   benefits: [
+  //     "Needs assessment and recommendations",
+  //     "Operator training programs",
+  //     "Regulatory compliance guidance",
+  //     "Process optimization"
+  //   ],
+  //   longDescription: "Our consultation services help you select the right weighing equipment for your specific needs and ensure your team knows how to operate it correctly. Our weighing experts can assess your requirements, recommend appropriate solutions, and help you navigate regulatory requirements. We offer comprehensive training programs for your staff, covering proper operation, basic maintenance, troubleshooting, and best practices. With decades of industry experience, our consultants can also help optimize your weighing processes for efficiency and accuracy. Whether you're setting up a new facility or upgrading existing equipment, our guidance ensures you make informed decisions."
+  // }
 ];
 
 export default services;

@@ -176,7 +176,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               <span className="text-gray-600">Model: {product.specifications.Model || 'Standard'}</span>
             </div>
             
-            <div className="mt-4">
+            {/* <div className="mt-4">
               {product.discountedPrice ? (
                 <div className="flex items-center">
                   <span className="text-3xl font-bold text-gray-800">${product.discountedPrice.toFixed(2)}</span>
@@ -188,7 +188,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
               ) : (
                 <span className="text-3xl font-bold text-gray-800">${product.price.toFixed(2)}</span>
               )}
-            </div>
+            </div> */}
             
             <div className="border-t border-b py-4 my-6">
               <p className="text-gray-600">{product.description}</p>

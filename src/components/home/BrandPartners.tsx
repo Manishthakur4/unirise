@@ -3,13 +3,15 @@ import { useState, useEffect, useRef } from 'react';
 
 const BrandPartners = () => {
   const brands = [
-    { name: 'GATI KWE', image: '/lovable-uploads/551addfc-38fa-47d1-bbfc-b2ba41986d23.png' },
-    { name: 'C&S Electric', image: '/lovable-uploads/41cb2634-50e7-42d9-9888-b8d19563b7fe.png' },
-    { name: 'Mahindra', image: '/lovable-uploads/7859a011-52b4-4e73-942e-15297abfe657.png' },
-    { name: 'Spark Minda', image: '/lovable-uploads/4d405e12-cb97-45ed-83b6-08fa841acee6.png' },
-    { name: 'Bikano', image: '/lovable-uploads/1bb47cbb-9b5b-4e00-a91a-2643b9ca1707.png' },
-    { name: 'Haldiram\'s', image: '/lovable-uploads/eccda2d6-d34c-40fc-9304-c7c5a3417609.png' },
-    { name: 'Big Basket', image: '/lovable-uploads/71eed01b-7c81-4df0-bfda-3d753cc2400b.png' },
+    { name: 'GATI KWE', image: '/lovable-uploads/gatikwe.jpeg' },
+    { name: 'C&S Electric', image: '/lovable-uploads/c&celectric.jpeg' },
+    { name: 'Mahindra', image: '/lovable-uploads/mahindra.jpeg' },
+    { name: 'Spark Minda', image: '/lovable-uploads/sparkminda.jpeg' },
+    { name: 'Bikano', image: '/lovable-uploads/bikano.jpeg' },
+    { name: 'Haldiram\'s', image: '/lovable-uploads/haldiram.jpeg' },
+    { name: 'Big Basket', image: '/lovable-uploads/bigbasket.jpeg' },
+    { name: 'Makino Auto', image: '/lovable-uploads/makinoauto.jpeg' },
+
   ];
 
   // Animation interval in milliseconds

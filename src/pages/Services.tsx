@@ -79,7 +79,7 @@ const Services = () => {
                   >
                     <div className="aspect-video relative overflow-hidden">
                       <img 
-                        src="/placeholder.svg" 
+                        src={service.images} 
                         alt={service.title} 
                         className="w-full h-full object-cover"
                       />
@@ -176,7 +176,7 @@ const Services = () => {
         </section>
         
         {/* Testimonials */}
-        <section className="py-16">
+        {/* <section className="py-16">
           <div className="scale-container">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="section-heading">What Our Clients Say</h2>
@@ -188,13 +188,13 @@ const Services = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[
                 {
-                  quote: "ScaleSavvy's calibration service is exceptional. Their technicians are professional, thorough, and maintain the accuracy of our laboratory scales year after year.",
+                  quote: "Unirise's calibration service is exceptional. Their technicians are professional, thorough, and maintain the accuracy of our laboratory scales year after year.",
                   author: "Dr. Emily Chen",
                   role: "Lab Director",
                   company: "NexGen Pharmaceuticals"
                 },
                 {
-                  quote: "When our main production scale broke down, ScaleSavvy had a technician on-site within hours. Their repair service saved us from costly downtime.",
+                  quote: "When our main production scale broke down, Unirise had a technician on-site within hours. Their repair service saved us from costly downtime.",
                   author: "James Wilson",
                   role: "Operations Manager",
                   company: "American Food Processing"
@@ -222,7 +222,7 @@ const Services = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
         
         {/* FAQ Section */}
         <section className="py-16 bg-gray-50">
@@ -280,7 +280,7 @@ const Services = () => {
                 <Link to="/contact">Contact Service Team</Link>
               </Button>
               <Button asChild className="bg-scale-navy hover:bg-scale-navy/90">
-                <a href="tel:+15551234567">Call (555) 123-4567</a>
+                <a href="tel:+919540488176">Call +91 9540488176,77</a>
               </Button>
             </div>
           </div>

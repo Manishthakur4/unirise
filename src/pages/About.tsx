@@ -19,9 +19,9 @@ const About = () => {
           <div className="scale-container">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-6">About ScaleSavvy</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">About Unirise</h1>
                 <p className="text-lg leading-relaxed mb-6">
-                  For over 15 years, ScaleSavvy has been the trusted provider of precision weighing solutions for businesses across industries. From laboratory research to industrial manufacturing, we've helped thousands of customers find the perfect scales for their needs.
+                  For over 10 years, Unirise has been the trusted provider of precision weighing solutions for businesses across industries. From laboratory research to industrial manufacturing, we've helped thousands of customers find the perfect scales for their needs.
                 </p>
                 <div className="flex space-x-4">
                   <Button asChild className="bg-scale-teal hover:bg-scale-teal/90">
@@ -34,8 +34,8 @@ const About = () => {
               </div>
               <div className="rounded-lg overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
-                  alt="ScaleSavvy team" 
+                  src="/lovable-uploads/unirise-techno-services-pvt-ltd-greater-noida-corporate-companies-305dxgnafe.jpg" 
+                  alt="Unirise team" 
                   className="w-full h-auto"
                 />
               </div>
@@ -56,21 +56,21 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div className="rounded-lg overflow-hidden">
                 <img 
-                  src="/placeholder.svg" 
-                  alt="ScaleSavvy founding" 
+                  src="/lovable-uploads/unirise-techno-services-pvt-ltd-greater-noida-corporate-companies-305dxgnafe.jpg" 
+                  alt="Unirise founding" 
                   className="w-full h-auto"
                 />
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-scale-navy mb-4">From Garage to Global</h3>
                 <p className="text-scale-gray mb-4">
-                  ScaleSavvy was founded in 2008 by Michael and Susan Thompson, two engineers who saw a gap in the market for high-quality, affordable weighing solutions. What started as a small operation in their garage has grown into a global company with customers in over 50 countries.
+                  Unirise was founded in 2015 by Mr.Govind Kumar Jha & Mr. Gopal Jha, two engineers who saw a gap in the market for high-quality, affordable weighing solutions. What started as a small operation in their garage has grown into a successfull company with customers in over 50 countries.
                 </p>
                 <p className="text-scale-gray mb-4">
                   Our founders' deep expertise in metrology and precision measurement remains at the core of our business. While we've grown substantially, we maintain the same commitment to quality, accuracy, and customer service that defined our early days.
                 </p>
                 <p className="text-scale-gray">
-                  Today, ScaleSavvy is recognized as an industry leader, known for our extensive product selection, technical expertise, and dedicated support team. We continue to innovate and expand our offerings to meet the evolving needs of our customers.
+                  Today, Unirise is recognized as an industry leader, known for our extensive product selection, technical expertise, and dedicated support team. We continue to innovate and expand our offerings to meet the evolving needs of our customers.
                 </p>
               </div>
             </div>
@@ -78,15 +78,15 @@ const About = () => {
             {/* Timeline */}
             <div className="mt-16 relative before:absolute before:inset-0 before:left-1/2 before:-ml-0.5 before:w-0.5 before:bg-gray-200">
               <div className="ml-auto pl-8 pr-0 w-1/2 relative mb-12">
-                <div className="absolute top-5 left-0 -ml-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2008</div>
+                <div className="absolute top-5 left-0 -ml-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2015</div>
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <h4 className="text-xl font-bold text-scale-navy mb-2">Company Founded</h4>
-                  <p className="text-scale-gray">ScaleSavvy begins operations, focusing on laboratory and analytical balances.</p>
+                  <p className="text-scale-gray">Unirise begins operations, focusing on laboratory and analytical balances.</p>
                 </div>
               </div>
               
               <div className="mr-auto pr-8 pl-0 w-1/2 relative mb-12">
-                <div className="absolute top-5 right-0 -mr-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2012</div>
+                <div className="absolute top-5 right-0 -mr-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2017</div>
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <h4 className="text-xl font-bold text-scale-navy mb-2">Expansion to Industrial Scales</h4>
                   <p className="text-scale-gray">Product line grows to include industrial and commercial weighing equipment.</p>
@@ -94,7 +94,7 @@ const About = () => {
               </div>
               
               <div className="ml-auto pl-8 pr-0 w-1/2 relative mb-12">
-                <div className="absolute top-5 left-0 -ml-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2015</div>
+                <div className="absolute top-5 left-0 -ml-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2020</div>
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <h4 className="text-xl font-bold text-scale-navy mb-2">Service Division Launch</h4>
                   <p className="text-scale-gray">Technical services department established for calibration, repair, and maintenance.</p>
@@ -102,15 +102,15 @@ const About = () => {
               </div>
               
               <div className="mr-auto pr-8 pl-0 w-1/2 relative mb-12">
-                <div className="absolute top-5 right-0 -mr-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2018</div>
+                <div className="absolute top-5 right-0 -mr-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2023</div>
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h4 className="text-xl font-bold text-scale-navy mb-2">International Expansion</h4>
-                  <p className="text-scale-gray">ScaleSavvy begins shipping internationally, serving customers globally.</p>
+                  <h4 className="text-xl font-bold text-scale-navy mb-2">Expanding Expansions</h4>
+                  <p className="text-scale-gray">Unirise begins shipping and deliverind, serving customers globally.</p>
                 </div>
               </div>
               
               <div className="ml-auto pl-8 pr-0 w-1/2 relative">
-                <div className="absolute top-5 left-0 -ml-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2023</div>
+                <div className="absolute top-5 left-0 -ml-5 w-10 h-10 rounded-full bg-scale-teal text-white flex items-center justify-center">2025</div>
                 <div className="bg-white p-6 rounded-lg shadow-md">
                   <h4 className="text-xl font-bold text-scale-navy mb-2">Digital Transformation</h4>
                   <p className="text-scale-gray">Launch of IoT-enabled scales and cloud integration services for modern businesses.</p>
@@ -121,12 +121,12 @@ const About = () => {
         </section>
         
         {/* Our Team */}
-        <section className="py-16 bg-gray-50">
+        {/* <section className="py-16 bg-gray-50">
           <div className="scale-container">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="section-heading">Our Leadership Team</h2>
               <p className="section-subheading mx-auto">
-                Meet the experts behind ScaleSavvy's success
+                Meet the experts behind Unirise's success
               </p>
             </div>
             
@@ -174,10 +174,10 @@ const About = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
         
         {/* Our Values */}
-        <section className="py-16">
+        {/* <section className="py-16">
           <div className="scale-container">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="section-heading">Our Core Values</h2>
@@ -251,7 +251,7 @@ const About = () => {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
         
         {/* CTA Section */}
         <section className="py-16 bg-scale-navy text-white">

@@ -82,7 +82,7 @@ const Contact = () => {
         from_name: `${formData.firstName} ${formData.lastName}`,
         to_name: 'Unirise Sales Team',
         from_email: formData.email,
-        to_email: 'mthakur12245@gmail.com',
+        to_email: 'sales@Unirisetechnoservices.com',
         reply_to: formData.email,
         subject: formData.subject,
         message: `${formData.message}${serviceInterestsText}`,
@@ -92,10 +92,10 @@ const Contact = () => {
 
       // Use the EmailJS serviceID, templateID, and userID
       await emailjs.send(
-        'service_contactform', // Replace with your actual service ID
-        'template_contact', // Replace with your actual template ID
+        'service_nydlu0o', // Replace with your actual service ID
+        'template_ho5ry1l', // Replace with your actual template ID
         templateParams,
-        'YOUR_USER_ID' // Replace with your actual User ID
+        'gTsCNreIeonwunqdT' // Replace with your actual User ID
       );
 
       toast({
@@ -126,11 +126,11 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white ">
       <Navbar />
-      <main className="pt-24 pb-16">
+      <main className="pt-24 pb-16 ">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-unirise-red to-unirise-light text-white py-16">
+        <section className="bg-gradient-to-r from-unirise-red to-unirise-light text-black py-16">
           <div className="scale-container">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
@@ -153,8 +153,8 @@ const Contact = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Call Us</h3>
                 <p className="text-gray-600 mb-4">Our support team is available Monday-Friday, 8am-6pm EST</p>
-                <a href="tel:+15551234567" className="text-unirise-red hover:underline font-medium">
-                  (555) 123-4567
+                <a href="tel:+919540488176" className="text-unirise-red hover:underline font-medium">
+                 +91 9540488176,77 
                 </a>
               </div>
               
@@ -166,8 +166,8 @@ const Contact = () => {
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Email Us</h3>
                 <p className="text-gray-600 mb-4">Send us an email and we'll respond as soon as possible</p>
-                <a href="mailto:mthakur12245@gmail.com" className="text-unirise-red hover:underline font-medium">
-                  mthakur12245@gmail.com
+                <a href="mailto:info@Unirisetechnoservices.com" className="text-unirise-red hover:underline font-medium">
+                info@Unirisetechnoservices.com
                 </a>
               </div>
               
@@ -179,10 +179,10 @@ const Contact = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Visit Us</h3>
-                <p className="text-gray-600 mb-4">Our headquarters are open for visitors Monday-Friday, 9am-5pm</p>
+                <p className="text-gray-600 mb-4">Our headquarters are open for visitors Monday-Saturday, 9am-6pm</p>
                 <address className="not-italic text-unirise-red">
-                  123 Weighing Avenue<br />
-                  Scale City, SC 12345
+                 Block B-68, Sector-88<br />
+                 Noida, UP 201305
                 </address>
               </div>
             </div>
@@ -311,9 +311,9 @@ const Contact = () => {
                         "Scale Purchases",
                         "Calibration Services",
                         "Scale Repair",
-                        "Scale Rental",
+                        // "Scale Rental",
                         "Custom Integration",
-                        "Consultation"
+                        // "Consultation"
                       ].map((service) => (
                         <div key={service} className="flex items-center">
                           <input
@@ -374,27 +374,38 @@ const Contact = () => {
             
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <div className="aspect-[16/9] w-full bg-gray-200 flex items-center justify-center">
-                <p className="text-gray-600">Interactive Map Would Be Embedded Here</p>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://maps.google.com/maps?q=28.5297068,77.4228262&z=15&output=embed"
+                style={{
+                  border: 'none',
+                  overflow: 'hidden',
+                  margin: 0,
+                  display: 'block' // Add this to prevent inline spacing issues
+                }}
+                allowFullScreen
+                title="Google Map" // Always add title for accessibility
+              />
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Unirise Headquarters</h3>
                 <address className="not-italic text-gray-600 mb-4">
-                  123 Weighing Avenue<br />
-                  Scale City, SC 12345<br />
-                  United States
+                  Block B-68, Sector-88<br />
+                  Noida, UP 201305<br />
+                  
                 </address>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <h4 className="font-medium text-gray-800 mb-1">Business Hours</h4>
-                    <p className="text-gray-600">Monday-Friday: 9am-5pm EST</p>
-                    <p className="text-gray-600">Saturday: 10am-2pm EST</p>
+                    <p className="text-gray-600">Monday-Saturday: 9am-6pm EST</p>
                     <p className="text-gray-600">Sunday: Closed</p>
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-800 mb-1">Contact</h4>
-                    <p className="text-gray-600">Phone: (555) 123-4567</p>
-                    <p className="text-gray-600">Email: mthakur12245@gmail.com</p>
-                    <p className="text-gray-600">Fax: (555) 123-4568</p>
+                    <p className="text-gray-600">Phone: +91 9540488176,77 </p>
+                    <p className="text-gray-600">Email: info@Unirisetechnoservices.com</p>
+                    {/* <p className="text-gray-600">Fax: (555) 123-4568</p> */}
                   </div>
                 </div>
               </div>
@@ -411,8 +422,8 @@ const Contact = () => {
                 <p className="text-gray-600 mb-4">
                   Our technical support team is available to help with product questions, troubleshooting, and more.
                 </p>
-                <a href="mailto:support@unirise.com" className="text-unirise-red hover:underline font-medium">
-                  support@unirise.com
+                <a href="mailto:info@Unirisetechnoservices.com" className="text-unirise-red hover:underline font-medium">
+                  info@Unirisetechnoservices.com
                 </a>
               </div>
               
