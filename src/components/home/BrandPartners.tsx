@@ -1,5 +1,7 @@
 
 import { useState, useEffect, useRef } from 'react';
+import { Minimize, Maximize } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const BrandPartners = () => {
   const brands = [
@@ -12,17 +14,16 @@ const BrandPartners = () => {
     { name: 'Big Basket', image: '/lovable-uploads/71eed01b-7c81-4df0-bfda-3d753cc2400b.png' },
   ];
 
-  // Animation interval in milliseconds
   const scrollInterval = 3000;
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMinimized, setIsMinimized] = useState(false);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (scrollContainerRef.current) {
         setCurrentIndex((prevIndex) => {
           const nextIndex = (prevIndex + 1) % brands.length;
-          // Apply smooth scroll animation
           const itemHeight = scrollContainerRef.current?.clientHeight
             ? scrollContainerRef.current.clientHeight / 5
             : 100;
@@ -37,29 +38,52 @@ const BrandPartners = () => {
     return () => clearInterval(intervalId);
   }, [brands.length]);
 
+  const toggleMinimize = () => {
+    setIsMinimized(!isMinimized);
+  };
+
   return (
     <div className="absolute left-0 right-0 top-0 z-40 flex flex-col items-end min-h-screen pointer-events-none">
-      <div className="fixed right-0 top-0 z-40 bg-white shadow-lg rounded-l-lg p-4 border-l border-t border-b border-gray-200 max-w-[150px] h-screen flex flex-col justify-between pointer-events-auto">
-        <h3 className="text-lg font-bold text-unirise-red mb-4 text-center">Our Clients</h3>
-        <div 
-          ref={scrollContainerRef} 
-          className="w-full h-[75vh] overflow-y-hidden relative"
-        >
-          <div className="flex flex-col w-full">
-            {brands.map((brand, index) => (
-              <div 
-                key={index} 
-                className="w-full h-[120px] flex items-center justify-center shrink-0 my-4"
-              >
-                <img 
-                  src={brand.image} 
-                  alt={brand.name} 
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
+      <div 
+        className={`fixed right-0 top-0 z-40 bg-white shadow-lg rounded-l-lg border-l border-t border-b border-gray-200 transition-all duration-300 pointer-events-auto ${
+          isMinimized 
+            ? 'w-[50px] h-[50px]' 
+            : 'max-w-[150px] h-screen'
+        }`}
+      >
+        <div className="flex justify-between items-center p-4">
+          {!isMinimized && <h3 className="text-lg font-bold text-unirise-red">Our Clients</h3>}
+          <Button 
+            variant="ghost" 
+            size="icon" 
+            onClick={toggleMinimize}
+            className="ml-auto"
+          >
+            {isMinimized ? <Maximize className="h-4 w-4" /> : <Minimize className="h-4 w-4" />}
+          </Button>
         </div>
+        
+        {!isMinimized && (
+          <div 
+            ref={scrollContainerRef} 
+            className="w-full h-[75vh] overflow-y-hidden relative"
+          >
+            <div className="flex flex-col w-full">
+              {brands.map((brand, index) => (
+                <div 
+                  key={index} 
+                  className="w-full h-[120px] flex items-center justify-center shrink-0 my-4"
+                >
+                  <img 
+                    src={brand.image} 
+                    alt={brand.name} 
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

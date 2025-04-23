@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import {
@@ -8,13 +7,26 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useEffect } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
 import products from '@/data/products';
 
 const Hero = () => {
-  // Get featured products for the carousel
   const featuredProducts = products
     .filter(product => product.isFeatured)
-    .slice(0, 5); // Limit to 5 featured products for the carousel
+    .slice(0, 5);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  useEffect(() => {
+    if (emblaApi) {
+      const intervalId = setInterval(() => {
+        emblaApi.scrollNext();
+      }, 3000); // Slides every 3 seconds
+
+      return () => clearInterval(intervalId);
+    }
+  }, [emblaApi]);
 
   return (
     <div className="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-br from-white to-gray-100">
@@ -50,29 +62,29 @@ const Hero = () => {
           </div>
           <div className="relative animate-scale-in lg:pl-10">
             <div className="bg-white rounded-lg shadow-xl overflow-hidden">
-              <Carousel className="w-full">
+              <Carousel 
+                ref={emblaRef}
+                className="w-full"
+              >
                 <CarouselContent>
                   {featuredProducts.length > 0 ? (
-                    featuredProducts.map((product) => {
-                      return (
-                        <CarouselItem key={product.id} className="relative">
-                          <div className="relative pb-[56.25%]">
-                            <img 
-                              src={product.image} 
-                              alt={product.imageAlt} 
-                              className="absolute inset-0 w-full h-full object-cover"
-                            />
-                            <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
-                              Featured
-                            </div>
-                            {/* Add product name at the bottom */}
-                            <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white py-2 px-4">
-                              <p className="font-medium">{product.name}</p>
-                            </div>
+                    featuredProducts.map((product) => (
+                      <CarouselItem key={product.id} className="relative">
+                        <div className="relative pb-[56.25%]">
+                          <img 
+                            src={product.image} 
+                            alt={product.imageAlt} 
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                          <div className="absolute top-0 left-0 bg-unirise-red text-white px-4 py-2 rounded-br-lg font-semibold">
+                            Featured
                           </div>
-                        </CarouselItem>
-                      );
-                    })
+                          <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white py-2 px-4">
+                            <p className="font-medium">{product.name}</p>
+                          </div>
+                        </div>
+                      </CarouselItem>
+                    ))
                   ) : (
                     <CarouselItem>
                       <div className="relative pb-[56.25%]">
