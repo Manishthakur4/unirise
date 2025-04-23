@@ -1,3 +1,4 @@
+
 export interface ProductSubtype {
   id: string;
   name: string;
@@ -70,13 +71,6 @@ export const productCategories: ProductCategory[] = [
         ]
       },
       {
-        id: 'platform-scale',
-        name: 'Platform Scale',
-        products: [
-          'MS Platform Weighing Scale'
-        ]
-      },
-      {
         id: 'flameproof-scale',
         name: 'Flameproof Scale',
         products: [
@@ -104,16 +98,7 @@ export const productCategories: ProductCategory[] = [
         name: 'Laboratory Scale',
         products: [
           'Digital Display Laboratory Balance',
-          'Electronic Precision Balance Price',
-          'Electronic Micro Balances Price',
-          'Digital Electronic Densimeter Balance Price',
-          'Precision Electronic Weighing Balance',
-          'Ultra Micro Balance-Touch Screen',
-          'Semi Micro Balance',
-          'Aczet Digital Weighing Scale',
-          'Precision Weighing Scale Dual Rang',
-          'High Precision Balance',
-          'Electronic Analytical Balances'
+          'Electronic Precision Balance Price'
         ]
       },
       {

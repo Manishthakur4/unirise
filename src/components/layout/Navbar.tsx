@@ -58,56 +58,78 @@ const Navbar = () => {
                   className={`text-gray-700 hover:text-unirise-red font-semibold transition duration-200 px-3 py-2 rounded-md flex items-center ${
                     isActive(item.path) ? 'text-unirise-red' : ''
                   }`}
+                  onClick={() => navigate('/products')}
                 >
                   {item.label}
                   <ChevronDown className="ml-1 w-4 h-4" />
                 </button>
                 {productsMenuOpen && (
-                  <div className="absolute left-0 top-full min-w-[320px] bg-white shadow-lg rounded-lg border z-50 mt-2">
-                    <div className="p-4 w-full flex flex-col md:flex-row gap-4">
-                      {/* Machine Types */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-scale-navy mb-2">Machines</h4>
-                        <ul>
-                          {productCategories
-                            .find(c => c.id === 'machine')
-                            ?.subtypes.map(sub => (
-                              <li key={sub.id}>
-                                <button
-                                  type="button"
-                                  className="block text-left px-2 py-1 text-gray-700 hover:bg-scale-light w-full"
-                                  onClick={() => {
-                                    navigate(`/products?category=machine&subtype=${sub.id}`);
-                                    setProductsMenuOpen(false);
-                                  }}
-                                >
-                                  {sub.name}
-                                </button>
-                              </li>
+                  <div className="absolute left-0 top-full bg-white shadow-lg rounded-lg border z-50 mt-2 w-[600px] grid grid-cols-2">
+                    <div className="p-4">
+                      <h4 className="text-sm font-semibold text-scale-navy mb-2 border-b pb-1">Machines</h4>
+                      <div className="grid grid-cols-2">
+                        {productCategories
+                          .find(c => c.id === 'machine')
+                          ?.subtypes.map(sub => (
+                            <div key={sub.id} className="mb-1">
+                              <button
+                                type="button"
+                                className="block text-left px-2 py-1 text-gray-700 hover:bg-scale-light w-full text-sm rounded"
+                                onClick={() => {
+                                  navigate(`/products?category=machine&subtype=${sub.id}`);
+                                  setProductsMenuOpen(false);
+                                }}
+                              >
+                                {sub.name}
+                              </button>
+                            </div>
                           ))}
-                        </ul>
                       </div>
-                      {/* Spare Part Types */}
-                      <div>
-                        <h4 className="text-sm font-semibold text-scale-navy mb-2">Spare Parts</h4>
-                        <ul>
-                          {productCategories
-                            .find(c => c.id === 'spare-part')
-                            ?.subtypes.map(sub => (
-                              <li key={sub.id}>
-                                <button
-                                  type="button"
-                                  className="block text-left px-2 py-1 text-gray-700 hover:bg-scale-light w-full"
-                                  onClick={() => {
-                                    navigate(`/products?category=spare-part&subtype=${sub.id}`);
-                                    setProductsMenuOpen(false);
-                                  }}
-                                >
-                                  {sub.name}
-                                </button>
-                              </li>
+                      <div className="mt-2 border-t pt-1">
+                        <button
+                          type="button"
+                          className="font-medium block text-left px-2 py-1 text-unirise-red hover:bg-red-50 w-full text-sm rounded"
+                          onClick={() => {
+                            navigate(`/products?category=machine`);
+                            setProductsMenuOpen(false);
+                          }}
+                        >
+                          All Machines
+                        </button>
+                      </div>
+                    </div>
+                    
+                    <div className="p-4 border-l">
+                      <h4 className="text-sm font-semibold text-scale-navy mb-2 border-b pb-1">Spare Parts</h4>
+                      <div className="grid grid-cols-2">
+                        {productCategories
+                          .find(c => c.id === 'spare-part')
+                          ?.subtypes.map(sub => (
+                            <div key={sub.id} className="mb-1">
+                              <button
+                                type="button"
+                                className="block text-left px-2 py-1 text-gray-700 hover:bg-scale-light w-full text-sm rounded"
+                                onClick={() => {
+                                  navigate(`/products?category=spare-part&subtype=${sub.id}`);
+                                  setProductsMenuOpen(false);
+                                }}
+                              >
+                                {sub.name}
+                              </button>
+                            </div>
                           ))}
-                        </ul>
+                      </div>
+                      <div className="mt-2 border-t pt-1">
+                        <button
+                          type="button"
+                          className="font-medium block text-left px-2 py-1 text-unirise-red hover:bg-red-50 w-full text-sm rounded"
+                          onClick={() => {
+                            navigate(`/products?category=spare-part`);
+                            setProductsMenuOpen(false);
+                          }}
+                        >
+                          All Spare Parts
+                        </button>
                       </div>
                     </div>
                   </div>

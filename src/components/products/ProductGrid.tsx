@@ -26,11 +26,8 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
   useEffect(() => {
     if (categoryParam) setCategory(categoryParam);
     if (subtypeParam) setSubtype(subtypeParam);
-    // eslint-disable-next-line
+    else setSubtype(null);
   }, [categoryParam, subtypeParam]);
-
-  // Get active category from productCategories
-  const activeCategory = productCategories.find(cat => cat.id === category);
 
   useEffect(() => {
     // Filter by category and subtype
@@ -78,6 +75,8 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
     }
 
     setFilteredProducts(result);
+    // Reset visible products when filter changes
+    setVisibleProducts(8);
   }, [category, subtype, sortBy, products, initialCategory]);
 
   const loadMore = () => setVisibleProducts(prev => prev + 8);
@@ -96,7 +95,12 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
             <option value="featured">Featured</option>
             <option value="name-asc">Name: A to Z</option>
             <option value="name-desc">Name: Z to A</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
           </select>
+        </div>
+        <div className="text-sm text-scale-gray">
+          {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''} found
         </div>
       </div>
 
@@ -123,6 +127,12 @@ const ProductGrid = ({ products, initialCategory = 'all' }: ProductGridProps) =>
         <div className="text-center py-16">
           <h3 className="text-xl font-semibold text-scale-navy mb-2">No products found</h3>
           <p className="text-scale-gray">Try adjusting your filters to find what you're looking for.</p>
+          <Button 
+            onClick={() => navigate('/products')} 
+            className="mt-4 bg-scale-navy hover:bg-scale-navy/90"
+          >
+            View All Products
+          </Button>
         </div>
       )}
     </div>

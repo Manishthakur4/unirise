@@ -39,17 +39,17 @@ const BrandPartners = () => {
 
   return (
     <div className="absolute left-0 right-0 top-0 z-40 flex flex-col items-end min-h-screen pointer-events-none">
-      <div className="fixed right-0 top-0 z-40 bg-white shadow-lg rounded-l-lg p-4 border-l border-t border-b border-gray-200 max-w-[150px] h-[calc(100vh-6rem)] flex flex-col justify-between pointer-events-auto" style={{ marginTop: '6rem', height: 'calc(100vh - 6rem)' }}>
+      <div className="fixed right-0 top-0 z-40 bg-white shadow-lg rounded-l-lg p-4 border-l border-t border-b border-gray-200 max-w-[150px] h-screen flex flex-col justify-between pointer-events-auto">
         <h3 className="text-lg font-bold text-unirise-red mb-4 text-center">Our Clients</h3>
         <div 
           ref={scrollContainerRef} 
-          className="w-full h-[650px] overflow-y-hidden relative"
+          className="w-full h-[75vh] overflow-y-hidden relative"
         >
           <div className="flex flex-col w-full">
             {brands.map((brand, index) => (
               <div 
                 key={index} 
-                className="w-full h-[90px] flex items-center justify-center shrink-0 my-2"
+                className="w-full h-[120px] flex items-center justify-center shrink-0 my-4"
               >
                 <img 
                   src={brand.image} 

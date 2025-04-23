@@ -41,9 +41,9 @@ const Products = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <Navbar />
-      <main className="pt-32 pb-16 flex-1 flex flex-row">
+      <main className="flex flex-col md:flex-row pt-28 pb-16">
         {/* Sidebar */}
-        <aside className="w-full md:w-72 bg-white border-r border-gray-200 py-6 px-2 md:px-5 min-h-full sticky top-32 h-fit">
+        <aside className="w-full md:w-64 lg:w-72 bg-white border-r border-gray-200 py-6 px-4 md:px-5 md:min-h-[calc(100vh-8rem)] md:sticky md:top-28">
           <h2 className="text-xl font-semibold text-scale-navy mb-5">Categories</h2>
           <div className="mb-8">
             <button
@@ -70,7 +70,7 @@ const Products = () => {
                 </button>
                 {/* Subtypes */}
                 {(categoryParam === cat.id || !categoryParam) && (
-                  <ul className="pl-4 mt-1">
+                  <ul className="pl-4 mt-1 space-y-1">
                     {cat.subtypes.map(sub => (
                       <li key={sub.id}>
                         <button
@@ -92,9 +92,9 @@ const Products = () => {
           </div>
         </aside>
         {/* Main Products grid */}
-        <section className="flex-1 px-1 md:px-6">
+        <section className="flex-1 px-4 md:px-6 lg:px-8">
           <header className="mb-8">
-            <h1 className="text-4xl font-bold text-scale-navy mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-scale-navy mb-4">
               {categoryName}
             </h1>
             <p className="text-scale-gray text-lg max-w-3xl">

@@ -1,3 +1,4 @@
+
 import { Link } from 'react-router-dom';
 import { productCategories } from '@/data/productCategories';
 
@@ -38,18 +39,34 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-bold mb-4">Products</h4>
             <ul className="space-y-2">
-              {productCategories.map(cat => (
-                <li key={cat.id}>
-                  <Link to={`/products?category=${cat.id}`} className="text-gray-300 hover:text-scale-teal transition-colors">
-                    {cat.name}s
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/products?category=machine" className="text-gray-300 hover:text-scale-teal transition-colors">
+                  Machines
+                </Link>
+              </li>
+              <li>
+                <Link to="/products?category=spare-part" className="text-gray-300 hover:text-scale-teal transition-colors">
+                  Spare Parts
+                </Link>
+              </li>
               <li>
                 <Link to="/products" className="text-gray-300 hover:text-scale-teal transition-colors">
                   All Products
                 </Link>
               </li>
+              {productCategories
+                .find(c => c.id === 'machine')
+                ?.subtypes.slice(0, 5)
+                .map(sub => (
+                  <li key={sub.id}>
+                    <Link 
+                      to={`/products?category=machine&subtype=${sub.id}`} 
+                      className="text-gray-300 hover:text-scale-teal transition-colors"
+                    >
+                      {sub.name}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </div>
 
