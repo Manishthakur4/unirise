@@ -43,12 +43,12 @@ const BrandPartners = () => {
   };
 
   return (
-    <div className="absolute left-0 right-0 top-0 z-40 flex flex-col items-end min-h-screen pointer-events-none">
+    <div className="fixed right-0 top-[80px] z-40 pointer-events-none">
       <div 
-        className={`fixed right-0 top-0 z-40 bg-white shadow-lg rounded-l-lg border-l border-t border-b border-gray-200 transition-all duration-300 pointer-events-auto ${
+        className={`bg-white shadow-lg rounded-l-lg border-l border-t border-b border-gray-200 transition-all duration-300 pointer-events-auto ${
           isMinimized 
             ? 'w-[50px] h-[50px]' 
-            : 'max-w-[150px] h-screen'
+            : 'max-w-[150px] h-[calc(100vh-80px)]'
         }`}
       >
         <div className="flex justify-between items-center p-4">
@@ -58,6 +58,7 @@ const BrandPartners = () => {
             size="icon" 
             onClick={toggleMinimize}
             className="ml-auto"
+            aria-label={isMinimized ? "Expand client list" : "Minimize client list"}
           >
             {isMinimized ? <Maximize className="h-4 w-4" /> : <Minimize className="h-4 w-4" />}
           </Button>
@@ -66,7 +67,7 @@ const BrandPartners = () => {
         {!isMinimized && (
           <div 
             ref={scrollContainerRef} 
-            className="w-full h-[75vh] overflow-y-hidden relative"
+            className="w-full h-[calc(100%-60px)] overflow-y-hidden relative"
           >
             <div className="flex flex-col w-full">
               {brands.map((brand, index) => (

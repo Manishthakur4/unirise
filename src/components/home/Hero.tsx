@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import {
@@ -7,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import products from '@/data/products';
 
@@ -17,15 +18,28 @@ const Hero = () => {
     .slice(0, 5);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const autoplayRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (emblaApi) {
-      const intervalId = setInterval(() => {
+      // Clear any existing interval when component mounts or emblaApi changes
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+      }
+
+      // Set up new interval for auto-sliding
+      autoplayRef.current = setInterval(() => {
         emblaApi.scrollNext();
       }, 3000); // Slides every 3 seconds
-
-      return () => clearInterval(intervalId);
     }
+
+    // Cleanup function to clear interval when component unmounts
+    return () => {
+      if (autoplayRef.current) {
+        clearInterval(autoplayRef.current);
+        autoplayRef.current = null;
+      }
+    };
   }, [emblaApi]);
 
   return (
@@ -70,7 +84,7 @@ const Hero = () => {
                   {featuredProducts.length > 0 ? (
                     featuredProducts.map((product) => (
                       <CarouselItem key={product.id} className="relative">
-                        <div className="relative pb-[56.25%]">
+                        <Link to={`/product/${product.id}`} className="block relative pb-[56.25%]">
                           <img 
                             src={product.image} 
                             alt={product.imageAlt} 
@@ -82,7 +96,7 @@ const Hero = () => {
                           <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white py-2 px-4">
                             <p className="font-medium">{product.name}</p>
                           </div>
-                        </div>
+                        </Link>
                       </CarouselItem>
                     ))
                   ) : (
