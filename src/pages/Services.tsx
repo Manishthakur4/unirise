@@ -280,7 +280,7 @@ const Services = () => {
                 <Link to="/contact">Contact Service Team</Link>
               </Button>
               <Button asChild className="bg-scale-navy hover:bg-scale-navy/90">
-                <a href="tel:+919540488176">Call +91 9540488176,77</a>
+                <a href="tel:+919540488176">Call +91 9540488176-77</a>
               </Button>
             </div>
           </div>

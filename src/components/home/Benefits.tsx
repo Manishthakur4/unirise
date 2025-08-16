@@ -94,7 +94,7 @@ const Benefits = () => {
             <div className="text-sm">Scales Sold</div>
           </div>
           <div className="text-center">
-            <div className="text-4xl font-bold text-scale-teal mb-2">98%</div>
+            <div className="text-4xl font-bold text-scale-teal mb-2">100%</div>
             <div className="text-sm">Customer Satisfaction</div>
           </div>
           <div className="text-center">

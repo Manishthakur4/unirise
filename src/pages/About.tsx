@@ -63,9 +63,9 @@ const About = () => {
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-scale-navy mb-4">From Garage to Global</h3>
-                <p className="text-scale-gray mb-4">
+                {/* <p className="text-scale-gray mb-4">
                   Unirise was founded in 2015 by Mr.Govind Kumar Jha & Mr. Gopal Jha, two engineers who saw a gap in the market for high-quality, affordable weighing solutions. What started as a small operation in their garage has grown into a successfull company with customers in over 50 countries.
-                </p>
+                </p> */}
                 <p className="text-scale-gray mb-4">
                   Our founders' deep expertise in metrology and precision measurement remains at the core of our business. While we've grown substantially, we maintain the same commitment to quality, accuracy, and customer service that defined our early days.
                 </p>

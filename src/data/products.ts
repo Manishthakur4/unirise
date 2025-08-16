@@ -1,4 +1,3 @@
-
 import { getProductCategoryInfo } from './productCategories';
 
 export interface Product {
@@ -22,12 +21,10 @@ export interface Product {
   images?: string[];
 }
 
-// Generate products based on the product categories
 const generateProducts = (): Product[] => {
   const products: Product[] = [];
   let id = 1;
-  
-  // Product descriptions
+
   const descriptions = [
     "High-precision digital scale perfect for laboratory environments, offering exceptional accuracy with advanced calibration features.",
     "Rugged industrial floor scale designed for warehouse and manufacturing environments. Built to withstand harsh conditions.",
@@ -38,8 +35,7 @@ const generateProducts = (): Product[] => {
     "Heavy-duty platform scale with a capacity of 1000kg, ideal for industrial and commercial applications requiring durability.",
     "Compact and portable weighing scale with precision measurement capabilities, perfect for laboratories and research facilities."
   ];
-  
-  // Extract all product names and create product objects
+
   const productNames = [
     'Floor Counting Scale Price',
     'Pieces Weighing & Counting Scales with Barcode Label Printing',
@@ -109,28 +105,43 @@ const generateProducts = (): Product[] => {
     'Heavy Duty Platform Weighing Scale',
     'Floor Weighing Scale with Ramp'
   ];
-  
-  productNames.forEach((name, index) => {
+
+  const removedProducts = [
+    'Retail POS System',
+    'Retail POS Software System',
+    'Restaurant POS System',
+    'Table Top Electronic Weighing Machine',
+    'Laboratory Balances',
+    'Electronic Precision Balance Price',
+    'Electronic Micro Balances Price',
+    'Digital Electronic Densimeter Balance Price',
+    'Precision Electronic Weighing Balance',
+    'Ultra Micro Balance-Touch Screen',
+    'Semi Micro Balance',
+    'Aczet Digital Weighing Scale',
+    'Precision Weighing Scale Dual Rang',
+    'High Precision Balance',
+    'Electronic Analytical Balances',
+    'Roller Platform Weighing Scale',
+    'MS Heavy Duty Platform Weighing Scale',
+    'Flame Proof Platform Scales (304 Stainless Steel) Price'
+  ];
+
+  const validProductNames = productNames.filter(name => !removedProducts.includes(name));
+
+  validProductNames.forEach((name, index) => {
     const info = getProductCategoryInfo(name);
     if (info) {
-      // Generate random price between 100 and 10000
       const price = Math.floor(Math.random() * 9900) + 100;
-      // 30% chance of having a discount
       const hasDiscount = Math.random() < 0.3;
       const discountedPrice = hasDiscount ? Math.floor(price * 0.85) : undefined;
-      // Random rating between 3.5 and 5.0
       const rating = (Math.random() * 1.5) + 3.5;
-      // 20% chance of being featured
       const isFeatured = Math.random() < 0.2;
-      // 15% chance of being a new arrival
       const isNewArrival = Math.random() < 0.15;
-      // Random stock between 5 and 50
       const stock = Math.floor(Math.random() * 46) + 5;
-      
-      // Random description from the array
+
       const description = descriptions[Math.floor(Math.random() * descriptions.length)];
-      
-      // Create features based on the product name
+
       const features = [
         `High-quality ${info.subtypeName.toLowerCase()} for professional use`,
         `Easy to use interface with intuitive controls`,
@@ -138,16 +149,14 @@ const generateProducts = (): Product[] => {
         `Precision measurement capability for accurate results`,
         `Compact design that saves space while maintaining functionality`
       ];
-      
-      // Create specifications
+
       const specifications: { [key: string]: string } = {
         "Model": `${info.subtypeId.toUpperCase()}-${Math.floor(Math.random() * 1000)}`,
         "Power": "AC adapter (included) or rechargeable battery",
         "Warranty": "1 Year manufacturer warranty",
         "Material": Math.random() < 0.5 ? "Stainless Steel" : "High-grade ABS plastic"
       };
-      
-      // Add capacity specification based on subtype
+
       if (info.subtypeId.includes("scale")) {
         const capacities = ["5kg", "10kg", "20kg", "50kg", "100kg", "500kg", "1000kg"];
         specifications["Maximum Capacity"] = capacities[Math.floor(Math.random() * capacities.length)];
@@ -746,15 +755,12 @@ const generateProducts = (): Product[] => {
           "/lovable-uploads/platform-weighing-scale.jpg",
         ];
       }
-      
-      // Generate meaningful alt text based on product name and type
+
       const altText = `${name} - ${info.categoryId === 'machine' ? 'Weighing Machine' : 'Spare Part'} (${info.subtypeName})`;
-      
-      // Add a reference to images in the description for easier identification
+
       const imageInfo = `Product ID: ${id}, Main Image: ${mainImage.split('/').pop()}, Additional Images: ${additionalImages.map(img => img.split('/').pop()).join(', ')}`;
       specifications["ImageInfo"] = imageInfo;
-      
-      // Add product to array
+
       products.push({
         id,
         name,
@@ -773,11 +779,11 @@ const generateProducts = (): Product[] => {
         stock,
         images: additionalImages
       });
-      
+
       id++;
     }
   });
-  
+
   return products;
 };
 

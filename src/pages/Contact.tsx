@@ -152,9 +152,9 @@ const Contact = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Call Us</h3>
-                <p className="text-gray-600 mb-4">Our support team is available Monday-Friday, 8am-6pm EST</p>
+                <p className="text-gray-600 mb-4">Our support team is available Monday-Friday, 8am-6pm IST</p>
                 <a href="tel:+919540488176" className="text-unirise-red hover:underline font-medium">
-                 +91 9540488176,77 
+                 +91 9540488176-77 
                 </a>
               </div>
               
@@ -179,7 +179,7 @@ const Contact = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Visit Us</h3>
-                <p className="text-gray-600 mb-4">Our headquarters are open for visitors Monday-Saturday, 9am-6pm</p>
+                <p className="text-gray-600 mb-4">Our headquarters are open for visitors Monday-Saturday, 9am-6pm IST</p>
                 <address className="not-italic text-unirise-red">
                  Block B-68, Sector-88<br />
                  Noida, UP 201305
@@ -398,7 +398,7 @@ const Contact = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <h4 className="font-medium text-gray-800 mb-1">Business Hours</h4>
-                    <p className="text-gray-600">Monday-Saturday: 9am-6pm EST</p>
+                    <p className="text-gray-600">Monday-Saturday: 9am-6pm IST</p>
                     <p className="text-gray-600">Sunday: Closed</p>
                   </div>
                   <div>

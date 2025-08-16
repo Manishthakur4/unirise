@@ -46,14 +46,6 @@ export const productCategories: ProductCategory[] = [
         ]
       },
       {
-        id: 'pos-system',
-        name: 'POS System',
-        products: [
-          'Retail POS System',
-          'Retail POS Software System'
-        ]
-      },
-      {
         id: 'digital-hanging-scale',
         name: 'Digital Hanging Scale',
         products: [
@@ -76,34 +68,6 @@ export const productCategories: ProductCategory[] = [
         name: 'Industrial Scale',
         products: [
           'Digital Industrial Weighing Scale'
-        ]
-      },
-      {
-        id: 'supermarket-scale',
-        name: 'Supermarket Scale',
-        products: [
-          'Restaurant POS System'
-        ]
-      },
-      {
-        id: 'electronic-weighing-scale',
-        name: 'Electronic Weighing Scale',
-        products: [
-          'Table Top Electronic Weighing Machine'
-        ]
-      },
-      {
-        id: 'platform-scale',
-        name: 'Platform Scale',
-        products: [
-          'MS Platform Weighing Scale'
-        ]
-      },
-      {
-        id: 'electronic-scale',
-        name: 'Electronic Scale',
-        products: [
-          'Laboratory Balances'
         ]
       },
       {
@@ -134,25 +98,7 @@ export const productCategories: ProductCategory[] = [
         name: 'Laboratory Scale',
         products: [
           'Digital Display Laboratory Balance',
-          'Electronic Precision Balance Price',
-          'Electronic Micro Balances Price',
-          'Digital Electronic Densimeter Balance Price',
-          'Precision Electronic Weighing Balance',
-          'Ultra Micro Balance-Touch Screen',
-          'Semi Micro Balance',
-          'Aczet Digital Weighing Scale',
-          'Precision Weighing Scale Dual Rang',
-          'High Precision Balance',
-          'Electronic Analytical Balances'
-        ]
-      },
-      {
-        id: 'platform-weighing-scale',
-        name: 'Platform Weighing Scale',
-        products: [
-          'Roller Platform Weighing Scale',
-          'MS Heavy Duty Platform Weighing Scale',
-          'Flame Proof Platform Scales (304 Stainless Steel) Price'
+          'Electronic Precision Balance Price'
         ]
       },
       {
@@ -247,7 +193,6 @@ export const productCategories: ProductCategory[] = [
   }
 ];
 
-// Helper function to get all product names
 export const getAllProductNames = (): string[] => {
   const products: string[] = [];
   
@@ -260,7 +205,6 @@ export const getAllProductNames = (): string[] => {
   return products;
 };
 
-// Helper function to get category and subtype for a product
 export const getProductCategoryInfo = (productName: string): { 
   categoryId: string;
   categoryName: string;

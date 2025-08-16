@@ -1,5 +1,6 @@
 
 import { Link } from 'react-router-dom';
+import { productCategories } from '@/data/productCategories';
 
 const Footer = () => {
   return (
@@ -34,19 +35,41 @@ const Footer = () => {
               </a> */}
             </div>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-bold mb-4">Products</h4>
             <ul className="space-y-2">
-              <li><Link to="/products?category=industrial" className="text-gray-300 hover:text-scale-teal transition-colors">Industrial Scales</Link></li>
-              <li><Link to="/products?category=commercial" className="text-gray-300 hover:text-scale-teal transition-colors">Commercial Scales</Link></li>
-              <li><Link to="/products?category=laboratory" className="text-gray-300 hover:text-scale-teal transition-colors">Laboratory Scales</Link></li>
-              <li><Link to="/products?category=kitchen" className="text-gray-300 hover:text-scale-teal transition-colors">Kitchen Scales</Link></li>
-              <li><Link to="/products?category=personal" className="text-gray-300 hover:text-scale-teal transition-colors">Personal Scales</Link></li>
-              <li><Link to="/products" className="text-gray-300 hover:text-scale-teal transition-colors">All Products</Link></li>
+              <li>
+                <Link to="/products?category=machine" className="text-gray-300 hover:text-scale-teal transition-colors">
+                  Machines
+                </Link>
+              </li>
+              <li>
+                <Link to="/products?category=spare-part" className="text-gray-300 hover:text-scale-teal transition-colors">
+                  Spare Parts
+                </Link>
+              </li>
+              <li>
+                <Link to="/products" className="text-gray-300 hover:text-scale-teal transition-colors">
+                  All Products
+                </Link>
+              </li>
+              {productCategories
+                .find(c => c.id === 'machine')
+                ?.subtypes.slice(0, 5)
+                .map(sub => (
+                  <li key={sub.id}>
+                    <Link 
+                      to={`/products?category=machine&subtype=${sub.id}`} 
+                      className="text-gray-300 hover:text-scale-teal transition-colors"
+                    >
+                      {sub.name}
+                    </Link>
+                  </li>
+                ))}
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-bold mb-4">Services</h4>
             <ul className="space-y-2">
@@ -57,18 +80,18 @@ const Footer = () => {
               {/* <li><Link to="/services" className="text-gray-300 hover:text-scale-teal transition-colors">Consultation & Training</Link></li> */}
             </ul>
           </div>
-          
+
           <div>
             <h4 className="text-lg font-bold mb-4">Contact Us</h4>
             <address className="not-italic text-gray-300 space-y-2">
               <p>Block B-68, Sector-88 </p>
               <p>Noida, UP 201305</p>
-              <p className="pt-2">Phone: <a href="tel:+919540488176" className="hover:text-scale-teal transition-colors">9540488176,77</a></p>
-              <p>Email: <a href="mailto:info@Unirise.com" className="hover:text-scale-teal transition-colors">info@Unirisetechnoservices.com</a></p>
+              <p className="pt-2">Phone: <a href="tel:+919540488176" className="hover:text-scale-teal transition-colors">9540488176-77</a></p>
+              <p>Email: <a href="mailto:info@Unirisetechnoservices.com" className="hover:text-scale-teal transition-colors">info@Unirisetechnoservices.com</a></p>
             </address>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             {/* <p className="text-gray-400 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} Unirise. All rights reserved.</p> */}
