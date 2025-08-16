@@ -48,8 +48,8 @@ const generateProducts = (): Product[] => {
     'Table Top Non-Touch Intelligent Scale with External Printer',
     'Label Printing Floor Scales',
     'Label Printing Platform Weighing Scale',
-    'Retail POS System',
-    'Retail POS Software System',
+    // 'Retail POS System',
+    // 'Retail POS Software System',
     'Hanging Scales Price',
     'Hanging Scales for Precision Weighing',
     'Luggage Hanging Scale',
@@ -57,17 +57,17 @@ const generateProducts = (): Product[] => {
     'Jewellery Weighing Scale',
     'Precision Digital Weighing Scale',
     'Digital Industrial Weighing Scale',
-    'Restaurant POS System',
-    'Table Top Electronic Weighing Machine',
+    // 'Restaurant POS System',
+    // 'Table Top Electronic Weighing Machine',
     'MS Platform Weighing Scale',
-    'Laboratory Balances',
+    // 'Laboratory Balances',
     'Flameproof Table Top Scale',
     'Electronic Weighing Scale',
     '100 Ton Dharam kanta price',
     '80 Ton Weighbridge cost',
     'Dharam Kanta 100 Ton price',
     'Digital Display Laboratory Balance',
-    'Electronic Precision Balance Price',
+    // 'Electronic Precision Balance Price',
     'S-Type Load Cell',
     'Compression Load Cell',
     'Weighbridge Load Cell',
@@ -77,9 +77,9 @@ const generateProducts = (): Product[] => {
     'Digital Load Cell',
     'High Capacity Compression Load Cell',
     
-    'Roller Platform Weighing Scale',
-    'MS Heavy Duty Platform Weighing Scale',
-    'Flame Proof Platform Scales (304 Stainless Steel) Price',
+    // 'Roller Platform Weighing Scale',
+    // 'MS Heavy Duty Platform Weighing Scale',
+    // 'Flame Proof Platform Scales (304 Stainlesxs Steel) Price',
     
     'Digital Industrial Flameproof Floor Weighing Machine Price',
     'Floor Weighing Scales with inbuilt thermal Printer Price',
@@ -107,24 +107,24 @@ const generateProducts = (): Product[] => {
   ];
 
   const removedProducts = [
-    'Retail POS System',
-    'Retail POS Software System',
-    'Restaurant POS System',
-    'Table Top Electronic Weighing Machine',
-    'Laboratory Balances',
-    'Electronic Precision Balance Price',
-    'Electronic Micro Balances Price',
-    'Digital Electronic Densimeter Balance Price',
-    'Precision Electronic Weighing Balance',
-    'Ultra Micro Balance-Touch Screen',
-    'Semi Micro Balance',
-    'Aczet Digital Weighing Scale',
-    'Precision Weighing Scale Dual Rang',
-    'High Precision Balance',
-    'Electronic Analytical Balances',
-    'Roller Platform Weighing Scale',
-    'MS Heavy Duty Platform Weighing Scale',
-    'Flame Proof Platform Scales (304 Stainless Steel) Price'
+    // 'Retail POS System',
+    // 'Retail POS Software System',
+    // 'Restaurant POS System',
+    // 'Table Top Electronic Weighing Machine',
+    // 'Laboratory Balances',
+    // 'Electronic Precision Balance Price',
+    // 'Electronic Micro Balances Price',
+    // 'Digital Electronic Densimeter Balance Price',
+    // 'Precision Electronic Weighing Balance',
+    // 'Ultra Micro Balance-Touch Screen',
+    // 'Semi Micro Balance',
+    // 'Aczet Digital Weighing Scale',
+    // 'Precision Weighing Scale Dual Rang',
+    // 'High Precision Balance',
+    // 'Electronic Analytical Balances',
+    // 'Roller Platform Weighing Scale',
+    // 'MS Heavy Duty Platform Weighing Scale',
+    // 'Flame Proof Platform Scales (304 Stainless Steel) Price'
   ];
 
   const validProductNames = productNames.filter(name => !removedProducts.includes(name));
@@ -270,28 +270,28 @@ const generateProducts = (): Product[] => {
       }
       
       // Retail POS System
-      if (index === 11) {
-        mainImage = "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg.jpg";
-        additionalImages = [
-          "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (1).jpg",
-          "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (2).jpg",
-          "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (3).jpg",
-          "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (4).jpg",
+      // if (index === 11) {
+      //   mainImage = "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg.jpg";
+      //   additionalImages = [
+      //     "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (1).jpg",
+      //     "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (2).jpg",
+      //     "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (3).jpg",
+      //     "/lovable-uploads/Sunrise 30kg 10 Inch Touch POS Scale, For Hotel, Capacity_ 50Kg (4).jpg",
 
-        ];
-      }
+      //   ];
+      // }
 
       // Retail POS Software System
-      if (index === 12) {
-        mainImage = "/lovable-uploads/SM5500XPCS15ECR-Intelligent-POS-Checkout-Scale-front__FitMaxWzEwMzAsMTAzMF0.jpg";
-        additionalImages = [
-          "/lovable-uploads/SM5500XPCS15ECR-Intelligent-POS-Checkout-Scale-customer-display__FitMaxWzEwMzAsMTAzMF0.jpg",
+      // if (index === 12) {
+      //   mainImage = "/lovable-uploads/SM5500XPCS15ECR-Intelligent-POS-Checkout-Scale-front__FitMaxWzEwMzAsMTAzMF0.jpg";
+      //   additionalImages = [
+      //     "/lovable-uploads/SM5500XPCS15ECR-Intelligent-POS-Checkout-Scale-customer-display__FitMaxWzEwMzAsMTAzMF0.jpg",
 
-        ];
-      }
+      //   ];
+      // }
 
       // Hanging Scales Price
-      if (index === 13) {
+      if (index === 11) {
         mainImage = "/lovable-uploads/Venus Metal PK Hanging Weighing Scale, For Agriculture, Capacity Tons_ upto 150 kg.jpg";
         additionalImages = [
           "/lovable-uploads/Venus Metal PK Hanging Weighing Scale, For Agriculture, Capacity Tons_ upto 150 kg (1).jpg",
@@ -300,7 +300,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Hanging Scales for Precision Weighing
-      if (index === 14) {
+      if (index === 12) {
         mainImage = "/lovable-uploads/MS Hanging Scale 200 Kg x 20 Gm, For Business, Model Name_Number_ HS200.jpg";
         additionalImages = [
           "/lovable-uploads/MS Hanging Scale 200 Kg x 20 Gm, For Business, Model Name_Number_ HS200 (1).jpg",
@@ -309,7 +309,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Luggage Hanging Scale
-      if (index === 15) {
+      if (index === 13) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-17 11-47-48.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-17 11-48-05.png",
@@ -318,7 +318,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Digital Pocket Weighing Scales
-      if (index === 16) {
+      if (index === 14) {
         mainImage = "/lovable-uploads/Dhaara Fully Automatic Pocket Weighing Scale, Model Name_Number_ ps001, Accuracy_ High.jpg";
         additionalImages = [
           "/lovable-uploads/Dhaara Fully Automatic Pocket Weighing Scale, Model Name_Number_ ps001, Accuracy_ High (1).jpg",
@@ -327,7 +327,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Jewellery Weighing Scale
-      if (index === 17) {
+      if (index === 15) {
         mainImage = "/lovable-uploads/Electric Essae JX Series Jewellery Weighing Machine, 300 gm.jpg";
         additionalImages = [
           "/lovable-uploads/Electric Essae JX Series Jewellery Weighing Machine, 300 gm (1).jpg",
@@ -338,7 +338,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Precision Digital Weighing Scale
-      if (index === 18) {
+      if (index === 16) {
         mainImage = "/lovable-uploads/Essae DS 852g Precsion Balance.jpg";
         additionalImages = [
           "/lovable-uploads/Essae DS 852g Precsion Balance (1).jpg",
@@ -347,7 +347,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Digital Industrial Weighing Scale
-      if (index === 19) {
+      if (index === 17) {
         mainImage = "/lovable-uploads/Industrial Weighing Scale, For Business Use, 500 Kg.jpg";
         additionalImages = [
           "/lovable-uploads/Industrial Weighing Scale, For Business Use, 500 Kg (1).jpg",
@@ -357,25 +357,25 @@ const generateProducts = (): Product[] => {
       }
 
       // Restaurant POS System
-      if (index === 20) {
-        mainImage = "/lovable-uploads/restaurant-image-1.png";
-        additionalImages = [
-          "/lovable-uploads/0000494_used-elite-ii-restaurant-point-of-sale-system-standalone_550.jpeg",
-          "/lovable-uploads/0000495_used-elite-ii-restaurant-point-of-sale-system-standalone_550.png",
-        ];
-      }
+      // if (index === 20) {
+      //   mainImage = "/lovable-uploads/restaurant-image-1.png";
+      //   additionalImages = [
+      //     "/lovable-uploads/0000494_used-elite-ii-restaurant-point-of-sale-system-standalone_550.jpeg",
+      //     "/lovable-uploads/0000495_used-elite-ii-restaurant-point-of-sale-system-standalone_550.png",
+      //   ];
+      // }
 
       // Table Top Electronic Weighing Machine
-      if (index === 21) {
-        mainImage = "/lovable-uploads/Screenshot from 2025-04-17 13-15-07.png";
-        additionalImages = [
-          "/lovable-uploads/Screenshot from 2025-04-17 13-15-20.png",
-          "/lovable-uploads/Screenshot from 2025-04-17 13-15-30.png",
-        ];
-      }
+      // if (index === 21) {
+      //   mainImage = "/lovable-uploads/Screenshot from 2025-04-17 13-15-07.png";
+      //   additionalImages = [
+      //     "/lovable-uploads/Screenshot from 2025-04-17 13-15-20.png",
+      //     "/lovable-uploads/Screenshot from 2025-04-17 13-15-30.png",
+      //   ];
+      // }
 
       // MS Platform Weighing Scale
-      if (index === 22) {
+      if (index === 18) {
         mainImage = "/lovable-uploads/71jh5lkjxkL._SL1500_.jpg";
         additionalImages = [
           "/lovable-uploads/71o8cqUB2iL._SL1500_.jpg",
@@ -386,17 +386,17 @@ const generateProducts = (): Product[] => {
       }
 
       // Laboratory Balances
-      if (index === 23) {
-        mainImage = "/lovable-uploads/lab-balance-2.jpg";
-        additionalImages = [
-          "/lovable-uploads/41UUQGaP2nL._SX425_.jpg",
-          "/lovable-uploads/4120SCy1j6L._SX425_.jpg",
+      // if (index === 23) {
+      //   mainImage = "/lovable-uploads/lab-balance-2.jpg";
+      //   additionalImages = [
+      //     "/lovable-uploads/41UUQGaP2nL._SX425_.jpg",
+      //     "/lovable-uploads/4120SCy1j6L._SX425_.jpg",
 
-        ];
-      }
+      //   ];
+      // }
 
       // Flameproof Table Top Scale
-      if (index === 24) {
+      if (index === 19) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-18 12-00-02.png";
         additionalImages = [
           "/lovable-uploads/flame-proof-weighing-scale-1663153824-6538806.jpeg",
@@ -405,7 +405,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Electronic Weighing Scale
-      if (index === 25) {
+      if (index === 20) {
         mainImage = "/lovable-uploads/weighing-machine-for-shop3.png";
         additionalImages = [
           "/lovable-uploads/weighing-machine-for-shop-2-2.png",
@@ -414,7 +414,7 @@ const generateProducts = (): Product[] => {
       }
 
       // 100 Ton Dharam kanta price
-      if (index === 26) {
+      if (index === 21) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-18 12-05-56.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-18 12-06-01.png",
@@ -423,7 +423,7 @@ const generateProducts = (): Product[] => {
       }
 
       // 80 Ton Weighbridge cost
-      if (index === 27) {
+      if (index === 22) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-18 12-09-24.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-18 12-09-43.png",
@@ -434,7 +434,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Dharam Kanta 100 Ton price
-      if (index === 28) {
+      if (index === 23) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-18 12-13-10.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-18 12-13-24.png",
@@ -443,7 +443,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Digital Display Laboratory Balance
-      if (index === 29) {
+      if (index === 24) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-18 12-16-39.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-18 12-16-09.png",
@@ -454,18 +454,17 @@ const generateProducts = (): Product[] => {
       }
 
       // Electronic Precision Balance Price
-      if (index === 30) {
-        mainImage = "/lovable-uploads/61I-UdFPq3L._SL1500_.jpg";
-        additionalImages = [
-          "/lovable-uploads/51rGvi0nwmL.jpg",
-          "/lovable-uploads/51hkwl6Ev+L.jpg",
-          "/lovable-uploads/617u7BIhKwL.jpg",
-
-        ];
-      }
+      // if (index === 30) {
+      //   mainImage = "/lovable-uploads/61I-UdFPq3L._SL1500_.jpg";
+      //   additionalImages = [
+      //     "/lovable-uploads/51rGvi0nwmL.jpg",
+      //     "/lovable-uploads/51hkwl6Ev+L.jpg",
+      //     "/lovable-uploads/617u7BIhKwL.jpg",
+      //   ];
+      // }
 
       // S-Type Load Cell
-      if (index === 31) {
+      if (index === 25) {
         mainImage = "/lovable-uploads/Thames T61-501 S Load Cell, 50 Kg- 1000 Kg.jpg";
         additionalImages = [
           "/lovable-uploads/Thames T61-501 S Load Cell, 50 Kg- 1000 Kg (1).jpg",
@@ -474,7 +473,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Compression Load Cell
-      if (index === 32) {
+      if (index === 26) {
         mainImage = "/lovable-uploads/Compression Load Cells (1).jpg";
         additionalImages = [
           "/lovable-uploads/Compression Load Cells.jpg",
@@ -483,7 +482,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Weighbridge Load Cell
-      if (index === 33) {
+      if (index === 27) {
         mainImage = "/lovable-uploads/Zemic Weighbridge Load Cells, 40-400tf.jpg";
         additionalImages = [
           "/lovable-uploads/Zemic Weighbridge Load Cells, 40-400tf (1).jpg",
@@ -494,7 +493,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Double Ended Shear Beam Ball Type Load Cell
-      if (index === 34) {
+      if (index === 28) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-18 13-22-21.png";
         additionalImages = [
           "/lovable-uploads/ADI 70610 Weighbridge Load Cells, 30 Ton.jpg",
@@ -503,7 +502,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Double Ended Shear Load Cell
-      if (index === 35) {
+      if (index === 29) {
         mainImage = "/lovable-uploads/doppelscherstab_waegezelle-d10n_02_1280x1280.png";
         additionalImages = [
           "/lovable-uploads/doppelscherstab_waegezelle_d10n_03_1280x1280.png",
@@ -512,7 +511,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Industrial Weight Box
-      if (index === 36) {
+      if (index === 30) {
         mainImage = "/lovable-uploads/31TG7C9pvtL.jpg";
         additionalImages = [
           "/lovable-uploads/31koAVhpTkL.jpg",
@@ -523,7 +522,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Digital Load Cell
-      if (index === 37) {
+      if (index === 31) {
         mainImage = "/lovable-uploads/Digital Load Cell.jpg";
         additionalImages = [
           "/lovable-uploads/Digital Load Cell (1).jpg",
@@ -532,7 +531,7 @@ const generateProducts = (): Product[] => {
       }
 
       // High Capacity Compression Load Cell
-      if (index === 38) {
+      if (index === 32) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-18 16-07-43.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-18 15-58-34.png",
@@ -541,32 +540,32 @@ const generateProducts = (): Product[] => {
       }
 
       // Roller Platform Weighing Scale
-      if (index === 39) {
-        mainImage = "/lovable-uploads/Screenshot from 2025-04-18 16-12-26.png";
-        additionalImages = [
-          "/lovable-uploads/Screenshot from 2025-04-18 16-12-35.png",
-        ];
-      }
+      // if (index === 39) {
+      //   mainImage = "/lovable-uploads/Screenshot from 2025-04-18 16-12-26.png";
+      //   additionalImages = [
+      //     "/lovable-uploads/Screenshot from 2025-04-18 16-12-35.png",
+      //   ];
+      // }
 
       // MS Heavy Duty Platform Weighing Scale
-      if (index === 40) {
-        mainImage = "/lovable-uploads/Screenshot from 2025-04-18 16-17-28.png";
-        additionalImages = [
-          "/lovable-uploads/Screenshot from 2025-04-18 16-17-47.png",
-        ];
-      }
+      // if (index === 40) {
+      //   mainImage = "/lovable-uploads/Screenshot from 2025-04-18 16-17-28.png";
+      //   additionalImages = [
+      //     "/lovable-uploads/Screenshot from 2025-04-18 16-17-47.png",
+      //   ];
+      // }
 
       // Flame Proof Platform Scales (304 Stainless Steel) Price
-      if (index === 41) {
-        mainImage = "/lovable-uploads/flame-proof-weighing-scale.jpg";
-        additionalImages = [
-          "/lovable-uploads/600-x-600-200-kg-platform-scale-with-flame-proof-indicator.jpg",
-          "/lovable-uploads/900-x-900-Platform-Scale-Regular-Loadcell-500-K-G.jpg",
-        ];
-      }
+      // if (index === 41) {
+      //   mainImage = "/lovable-uploads/flame-proof-weighing-scale.jpg";
+      //   additionalImages = [
+      //     "/lovable-uploads/600-x-600-200-kg-platform-scale-with-flame-proof-indicator.jpg",
+      //     "/lovable-uploads/900-x-900-Platform-Scale-Regular-Loadcell-500-K-G.jpg",
+      //   ];
+      // }
 
       // Digital Industrial Flameproof Floor Weighing Machine Price
-      if (index === 42) {
+      if (index === 33) {
         mainImage = "/lovable-uploads/flame-proof-weighing-scale-1663153824-6538806.jpeg";
         additionalImages = [
           "/lovable-uploads/900-x-900-Platform-Scale-Regular-Loadcell-500-K-G.jpg",
@@ -575,7 +574,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Floor Weighing Scales with inbuilt thermal Printer Price
-      if (index === 43) {
+      if (index === 34) {
         mainImage = "/lovable-uploads/Pasted image (4).png";
         additionalImages = [
           "/lovable-uploads/1-4.png",
@@ -583,7 +582,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Low Profile Weighing Scale with two side ramps
-      if (index === 44) {
+      if (index === 35) {
         mainImage = "/lovable-uploads/low-profile-weighing-scale-with-two-side-ramps.png";
         additionalImages = [
           "/lovable-uploads/platform-weighing-scale.jpg",
@@ -592,7 +591,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Stainless Steel Table Top Weighing Scale
-      if (index === 45) {
+      if (index === 36) {
         mainImage = "/lovable-uploads/electronic-weighing-scale-1000x1000.jpg";
         additionalImages = [
           "/lovable-uploads/precision-scale-1000x1000.jpg",
@@ -601,7 +600,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Table Top Weighing Scale
-      if (index === 46) {
+      if (index === 37) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 01-21-07.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 01-21-22.png",
@@ -612,7 +611,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Table Top Weighing Machine Price
-      if (index === 47) {
+      if (index === 38) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 01-24-56.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 01-25-42.png",
@@ -620,7 +619,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Counter Scale
-      if (index === 48) {
+      if (index === 39) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 01-31-04.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 01-31-11.png",
@@ -631,7 +630,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Retail Table Top Weighing Scale
-      if (index === 49) {
+      if (index ===  40) {
         mainImage = "/lovable-uploads/Pasted image (5).png";
         additionalImages = [
           "/lovable-uploads/precision-scale-1000x1000.jpg",
@@ -640,7 +639,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Abs Waterproof Body Table Top Price
-      if (index === 50) {
+      if (index === 41) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 02-14-04.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 02-14-16.png",
@@ -649,7 +648,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Waterproof Stainless-Steel Weight Machine Price
-      if (index === 51) {
+      if (index === 42) {
         mainImage = "/lovable-uploads/Pasted image (6).png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 02-18-39.png",
@@ -661,7 +660,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Digital Crane Scale
-      if (index === 52) {
+      if (index === 43) {
         mainImage = "/lovable-uploads/Digital Crane Scale.jpg";
         additionalImages = [
           "/lovable-uploads/Digital Crane Scale (1).jpg",
@@ -670,7 +669,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Thermal Protection Crane Scale
-      if (index === 53) {
+      if (index === 44) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 02-28-58.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 02-29-04.png",
@@ -681,7 +680,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Heavy Duty Wireless Hanging Scale
-      if (index === 54) {
+      if (index === 45) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 02-34-12.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 02-34-17.png",
@@ -692,7 +691,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Heavy Duty Hanging Crane Scale With Heat Proof
-      if (index === 55) {
+      if (index === 46) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 02-38-05.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 02-38-38.png",
@@ -701,7 +700,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Wireless Digital Crane Scale
-      if (index === 56) {
+      if (index === 47) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 02-45-25.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 02-45-31.png",
@@ -713,7 +712,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Heavy Duty Electronic Platform Weighing Scale with thermal Printer
-      if (index === 57) {
+      if (index === 48) {
         mainImage = "/lovable-uploads/Screenshot from 2025-04-19 02-48-03.png";
         additionalImages = [
           "/lovable-uploads/Screenshot from 2025-04-19 02-48-54.png",
@@ -721,7 +720,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Fully Stainless Steel Floor Weighing Scales
-      if (index === 58) {
+      if (index === 49) {
         mainImage = "/lovable-uploads/Industrial Weighing Scale, For Business Use, 500 Kg (2).jpg";
         additionalImages = [
           "/lovable-uploads/Industrial Weighing Scale, For Business Use, 500 Kg (1).jpg",
@@ -730,7 +729,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Weighing Scale With Label Printer
-      if (index === 59) {
+      if (index === 50) {
         mainImage = "/lovable-uploads/353335d0-7595-4490-8276-f0fb962a619a.png";
         additionalImages = [
           "/lovable-uploads/d0c50158-c003-4b19-ae1f-ad31a2d617c7.png",
@@ -739,7 +738,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Heavy Duty Platform Weighing Scale
-      if (index === 60) {
+      if (index === 51) {
         mainImage = "/lovable-uploads/Pasted image (7).png";
         additionalImages = [
           "/lovable-uploads/71o8cqUB2iL._SL1500_.jpg",
@@ -748,7 +747,7 @@ const generateProducts = (): Product[] => {
       }
 
       // Floor Weighing Scale with Ramp
-      if (index === 61) {
+      if (index === 52) {
         mainImage = "/lovable-uploads/Pasted image (8).png";
         additionalImages = [
           "/lovable-uploads/adam-equipment-700100200-accessory-floor-scale-ramp-1171034.jpg",
